@@ -1,0 +1,40 @@
+# dependencies
+/node_modules
+
+# Next.js output
+/.next
+/out
+
+# production
+/build
+
+# local environment and secrets
+.env*
+.npmrc
+.netrc
+.git-credentials
+.secrets/
+secrets/
+credentials.json
+service-account*.json
+*.pem
+*.key
+*.p12
+*.pfx
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# system and editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts

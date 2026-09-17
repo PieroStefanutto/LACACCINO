@@ -1,0 +1,32 @@
+{
+  "name": "lacaccino-website",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "test": "node --test tests/*.test.mjs",
+    "check:preview": "node scripts/check-preview.mjs"
+  },
+  "dependencies": {
+    "d3-geo": "latest",
+    "lucide-react": "latest",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "topojson-client": "latest",
+    "world-atlas": "latest"
+  },
+  "devDependencies": {
+    "@types/d3-geo": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@types/topojson-client": "latest",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "typescript": "latest"
+  }
+}
