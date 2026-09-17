@@ -8,6 +8,7 @@ const links = [
   { href: "#rituale", label: "Kaffee & Rituale" },
   { href: "#kollektion", label: "Kollektion" },
   { href: "#vision", label: "Unsere Vision" },
+  { href: "/konto", label: "Mein Konto" },
 ];
 
 export function Header() {

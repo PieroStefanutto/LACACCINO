@@ -1,5 +1,13 @@
 # LACACCINO
 
+## Website und Datenbank
+
+Die Website ist über GitHub `main` mit den Vercel-Projekten `lacaccino` und `lacaccino-mfw9` verbunden. Hauptadresse: https://lacaccino.vercel.app.
+
+Neu: `/kontakt` speichert Anfragen in Supabase, `/konto` bietet Anmeldung, ein privates Profil und die freiwillige Warteliste für den Markenstart 2029. Die Warteliste verlangt eine bestätigte E-Mail-Adresse und lässt sich im Konto wieder verlassen. Registrierung und Passwort-E-Mails bleiben bis zur späteren SMTP-Einrichtung gesperrt (`AUTH_EMAIL_ENABLED`).
+
+Einrichtung, Zugriffsschutz und Betrieb stehen in [docs/supabase-setup.md](docs/supabase-setup.md). Projektschlüssel liegen ausschließlich in ignorierten lokalen Umgebungsdateien und geschützten Vercel-Variablen.
+
 Lokale Next.js-Markenwebsite für eine entstehende Luxusmarke für Kaffee to go. Geplanter Markenstart: 2029. Alle Produktbilder sind Designkonzepte; die sechs Orte sind Zukunftsvisionen, keine Filialankündigungen.
 
 ## Lokal ansehen

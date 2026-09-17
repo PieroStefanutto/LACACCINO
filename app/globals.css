@@ -12,6 +12,40 @@
   --shell: min(1320px, calc(100% - 96px));
 }
 
+/* Contact, account and launch waitlist share the brand's quiet form language. */
+.community { background: #100c09; border-top: 1px solid var(--line); }
+.community-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+.community-intro { max-width: 440px; margin-top: 28px; color: var(--cream-muted); }
+.community-card { padding: clamp(24px, 4vw, 48px); border: 1px solid var(--line); background: #15100c; min-width: 0; }
+.community-card h2, .community-card h3 { font-size: clamp(2rem, 3.6vw, 3.3rem); margin-bottom: 28px; }
+.community-card > p:not(.eyebrow) { color: var(--cream-muted); margin-bottom: 28px; }
+.community-card > .text-link { display: flex; width: fit-content; margin-top: 24px; }
+.account-page { min-height: 100svh; padding-block: 44px 80px; }
+.account-heading { margin: 72px 0 48px; max-width: 860px; }
+.account-heading h1 { font-size: clamp(2.8rem, 6vw, 5.5rem); }
+.account-heading > p:last-child { color: var(--cream-muted); margin-top: 24px; overflow-wrap: anywhere; }
+.account-auth { max-width: 660px; margin-bottom: 36px; }
+.account-links { display: flex; gap: 28px; flex-wrap: wrap; margin-block: 32px; }
+.community-form fieldset { padding: 0; margin: 0; border: 0; display: grid; gap: 22px; min-width: 0; }
+.community-form label { display: grid; gap: 8px; font-size: .85rem; }
+.community-form input:not([type="checkbox"]), .community-form textarea { width: 100%; border: 1px solid #806b50; background: #0d0a08; color: var(--cream); padding: 13px 15px; font: inherit; border-radius: 0; }
+.community-form textarea { resize: vertical; min-height: 140px; }
+.community-form input:focus-visible, .community-form textarea:focus-visible { outline-offset: 3px; }
+.community-form .form-check { display: flex; gap: 12px; align-items: flex-start; font-size: .78rem; line-height: 1.65; }
+.form-check input { flex: 0 0 18px; width: 18px; height: 18px; margin-top: 4px; accent-color: var(--gold-bright); }
+.form-note { font-size: .78rem; color: var(--cream-muted); line-height: 1.7; }
+.community-form > .form-note { margin-block: 18px; }
+.form-feedback { min-height: 1.5em; margin-top: 18px; font-size: .85rem; color: #f3bfac; }
+.form-feedback--success { color: #c3d9b5; }
+.form-tabs { display: flex; gap: 20px; margin-bottom: 28px; flex-wrap: wrap; }
+.form-tabs button { background: transparent; border: 0; border-bottom: 1px solid transparent; padding: 12px 0; color: var(--cream-muted); }
+.form-tabs button[aria-pressed="true"] { color: var(--gold-bright); border-color: var(--gold); }
+.form-text-button { border-top: 0; border-left: 0; border-right: 0; background: transparent; }
+.form-honeypot { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+.community-form fieldset:disabled { opacity: .6; }
+.community-form button:disabled { cursor: wait; }
+@media (max-width: 800px) { .community-grid { grid-template-columns: 1fr; gap: 32px; } .account-heading { margin-top: 48px; } }
+
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; background: var(--ink); }
 body { margin: 0; background: var(--ink); color: var(--cream); font: 16px/1.65 Arial, Helvetica, sans-serif; }

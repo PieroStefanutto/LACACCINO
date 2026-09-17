@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ArrowDown, ArrowDownRight, ArrowUpRight } from "lucide-react";
 import { Header } from "@/components/Header";
 import { VisionMap } from "@/components/VisionMap";
@@ -202,6 +203,13 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="community section" id="dabei" aria-labelledby="community-title">
+        <div className="shell community-grid">
+          <div><p className="eyebrow">05 — In Verbindung bleiben</p><h2 id="community-title">Der Anfang.<br /><em>Mit dir.</em></h2><p className="community-intro">Begleite LACACCINO auf dem Weg zum geplanten Markenstart 2029.</p></div>
+          <div className="community-card"><p className="eyebrow">Die Warteliste</p><h3>Von Anfang an dabei.</h3><p>Erstelle dein Konto, bestätige deine E-Mail-Adresse und trage dich in die Warteliste ein. Deine Anmeldung kannst du dort jederzeit zurücknehmen.</p><Link className="button" href="/konto">Zum Konto & zur Warteliste <ArrowUpRight aria-hidden="true" size={17} /></Link><Link className="text-link" href="/kontakt">Eine Nachricht an LACACCINO</Link></div>
+        </div>
+      </section>
+
       <section className="closing" aria-labelledby="closing-title">
         <GoldWaves className="closing__waves" />
         <div className="shell closing__inner" data-reveal>
@@ -223,6 +231,8 @@ export default function Home() {
             <a href="#rituale">Kaffee & Rituale</a>
             <a href="#kollektion">Kollektion</a>
             <a href="#vision">Unsere Vision</a>
+            <Link href="/kontakt">Kontakt</Link>
+            <Link href="/konto">Mein Konto</Link>
           </nav>
           <p>Markenstudie · Designkonzepte</p>
         </div>
