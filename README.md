@@ -56,8 +56,8 @@ Für den manuellen Abnahmelauf: Desktop und Smartphone, Intro überspringen, ern
 
 ## Rechtliche Informationen
 
-Impressum, Datenschutz, AGB/Nutzungshinweise und Cookie-Information sind über den globalen Footer erreichbar. Die Anbieterangaben stammen aus dem Dächle-Impressum. Fehlende Angaben und betriebliche Prüfpunkte sind in [docs/legal-review.md](docs/legal-review.md) dokumentiert. Die Seiten bleiben bis zur Klärung in der Vorschau. Das ursprüngliche dunkle Design wurde auf Wunsch wiederhergestellt.
+Impressum, Datenschutz, AGB/Nutzungshinweise und Cookie-Information sind über den globalen Footer erreichbar. Die Anbieterangaben stammen aus dem Dächle-Impressum. Fehlende Angaben und betriebliche Prüfpunkte sind in [docs/legal-review.md](docs/legal-review.md) dokumentiert. Der Inhaber hat die Veröffentlichung beauftragt; offene Angaben sind weiterhin zu ergänzen. Das ursprüngliche dunkle Design wurde auf Wunsch wiederhergestellt.
 
 ## Kundenportal und Administration
 
-Das Kundenportal unter `/konto` enthält Profil, Newsletter-Einwilligung, Warteliste und ein vorbereitetes Punktekonto. `/admin/anmelden` führt zur geschützten Kunden- und Punkteverwaltung. Details zu E-Mail-Freischaltung, Admin-Zugang und Prüfungen: [docs/customer-portal.md](docs/customer-portal.md). Desktop- und Smartphone-Ansichten sowie die wichtigsten Abläufe wurden für diese Erweiterung im Browser geprüft.
+Das Kundenportal unter `/konto` enthält Profil, Newsletter-Einwilligung, Warteliste, Punktekonto und Kontolöschung. Eigene Reiter zeigen Bestellhistorie, bereits gekaufte Lieblingsprodukte und fünf aktivierbare persönliche Rabattcodes für den späteren Shop. `/admin/anmelden` führt zur geschützten Kunden- und Punkteverwaltung. Details zu E-Mail-Freischaltung, Admin-Zugang, Shopvorbereitung und Prüfungen: [docs/customer-portal.md](docs/customer-portal.md). Desktop- und Smartphone-Ansichten sowie die wichtigsten Abläufe wurden im Browser geprüft.

@@ -14,7 +14,7 @@ Die fremde Fotolia-Bildangabe, pauschale Haftungsausschlüsse und die dortige Da
 - USt-IdNr., Wirtschafts-Identifikationsnummer und Registereintrag laut Antwort des Inhabers vorerst nicht vorhanden. Keine Angaben erfunden.
 - Verbraucherschlichtung laut Inhaber ungeklärt: Teilnahmeverpflichtung/-bereitschaft und gegebenenfalls Beschäftigtenzahl zum Vorjahresende klären, dann Information nach § 36 VSBG ergänzen. Keine pauschale Nichtteilnahme behauptet.
 - Auftragsverarbeitungsverträge, konkrete Vercel-Tarifabdeckung, Transfergarantien und Unterauftragnehmer bestätigen. Der öffentlich verlinkte Vercel-DPA nennt Pro/Enterprise; seine Geltung für diesen Vertrag wurde nicht nachgewiesen. Keine Vertragsannahme oder kostenpflichtige Änderung vorgenommen.
-- Tatsächliche Hosting-/Auth-Protokollfristen und betriebliche Bearbeitung von Löschungsanfragen festlegen. Die Website besitzt keine allgemeine automatische Löschroutine für Kontaktanfragen und Konten; die Erklärung behauptet deshalb keine festen oder automatischen Löschfristen.
+- Tatsächliche Hosting-/Auth-Protokollfristen und betriebliche Bearbeitung weitergehender Löschungsanfragen festlegen. Kunden können ihr Konto jetzt selbst löschen. Für unabhängige Kontaktanfragen, Protokolle, Backups und später aufzubewahrende Bestellbelege gibt es keine allgemeine automatische Fristenroutine; die Erklärung behauptet deshalb keine festen Löschfristen.
 - Rechtstexte vor öffentlicher Verwendung fachlich prüfen lassen. Dies ist eine auf den untersuchten Code abgestimmte redaktionelle Umsetzung, keine Bestätigung vollständiger Rechtskonformität.
 
 ## Umfang der AGB-Seite
@@ -52,3 +52,9 @@ Build, Lint und acht vorhandene Tests erfolgreich. HTTP-Prüfung von Inhalten, B
 ## Ergänzung Kundenportal
 
 Die Vorschau beschreibt jetzt auch Vor-/Nachname, optionale Telefonnummer, getrennte Newsletter-Einwilligung mit Änderungsnachweis sowie Punktebuchungen und den berechtigten Admin-Zugriff. Noch kein Newsletterversand, Shop oder Punkte-Geldwert. Vor Newsletterstart Versanddienst, Nachweis-/Löschfristen und einen funktionierenden Abmeldelink in jeder Werbemail ergänzen und prüfen. Die bestehenden offenen Anbieter- und Vertragsangaben bleiben offen.
+
+## Ergänzung Selbstlöschung und Shopvorbereitung
+
+Die bestätigte Kontolöschung entfernt den Zugang samt kontogebundenen Daten. Bestellzuordnungen werden gelöst, eigenständige Kontaktanfragen und Anbieterprotokolle nicht pauschal gelöscht. Art. 17 DSGVO enthält Ausnahmen unter anderem für erforderliche gesetzliche Aufbewahrung; vor einem echten Shopstart sind Belegprozesse und konkrete Fristen festzulegen. Eine Löschschaltfläche allein bestätigt keine vollständige Rechtskonformität. Grundlage: https://eur-lex.europa.eu/eli/reg/2016/679/deu (Art. 17).
+
+Die fünf Rabattangebote und ihre Aktivierung werden jetzt transparent beschrieben. Einlösung, Zahlungs-/Versanddienste, Retouren und gegebenenfalls geänderte Werbeaussagen müssen vor Shopstart ergänzt und geprüft werden. Veröffentlichung erfolgt auf ausdrücklichen Wunsch des Inhabers; fehlende geschäftliche E-Mail-Adresse und weitere oben genannte Angaben bleiben offen.

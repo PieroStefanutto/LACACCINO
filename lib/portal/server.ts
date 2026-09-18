@@ -15,6 +15,15 @@ export async function adminRole(userId: string) {
   return data as { username: string; must_change_password: boolean } | null;
 }
 
+export async function requireCustomerSession() {
+  const supabase = await createSupabaseServer();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+  if (!user) redirect("/konto");
+  return { user, supabase };
+}
+
 export async function requireAdmin(allowInitialPassword = false) {
   const supabase = await createSupabaseServer();
   const {

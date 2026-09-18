@@ -26,7 +26,7 @@ export const metadata = {
 export default async function Account({
   searchParams,
 }: {
-  searchParams: Promise<{ error?: string; welcome?: string }>;
+  searchParams: Promise<{ error?: string; welcome?: string; deleted?: string }>;
 }) {
   const query = await searchParams;
   const enabled =
@@ -69,6 +69,7 @@ export default async function Account({
             <p className="form-note">Der Marktstart ist für 2029 geplant.</p>
           </div>
           <div className="community-card account-auth">
+            {query.deleted === "1" && <p role="status" className="form-feedback form-feedback--success">Dein Kundenkonto wurde gelöscht. Du bist abgemeldet.</p>}
             {query.error && (
               <p role="alert" className="form-feedback">
                 Der Zugang konnte nicht abgeschlossen werden. Bitte melde dich
@@ -267,7 +268,8 @@ export default async function Account({
                 </p>
                 <div className="portal-inline-links">
                   <Link href="/konto/passwort">Passwort ändern</Link>
-                  <Link href="/kontakt">Hilfe oder Kontolöschung anfragen</Link>
+                  <Link href="/kontakt">Hilfe & Kontakt</Link>
+                  {!role && <Link href="/konto/loeschen">Konto löschen</Link>}
                   <Link href="/datenschutz">Datenschutz</Link>
                 </div>
               </div>

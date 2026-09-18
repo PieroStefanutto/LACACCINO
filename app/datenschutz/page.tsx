@@ -94,18 +94,23 @@ export default function PrivacyPage() {
           deine E-Mail-Adresse, eine Nutzerkennung, Authentifizierungsdaten, den
           Bestätigungsstatus und technische Sitzungsdaten. Vorname, Nachname,
           die freiwillig angegebene Telefonnummer, der Anzeigename und der
-          Zeitpunkt der Profilerstellung werden im Profil gespeichert.
-          Neue Kunden erhalten nach Freischaltung des Mailversands einen
-          persönlichen Anmeldelink. Passwörter bestehender Konten werden vom Authentifizierungsdienst geprüft;
-          wir speichern sie nicht in der Profiltabelle.
+          Zeitpunkt der Profilerstellung werden im Profil gespeichert. Neue
+          Kunden erhalten nach Freischaltung des Mailversands einen persönlichen
+          Anmeldelink. Passwörter bestehender Konten werden vom
+          Authentifizierungsdienst geprüft; wir speichern sie nicht in der
+          Profiltabelle.
         </p>
         <p>
           Rechtsgrundlage für die Bereitstellung und Verwaltung des von dir
           gewünschten Kontos ist Art. 6 Abs. 1 Buchst. b DSGVO. Die Angaben
-          bleiben für die Dauer des Kontos erforderlich. Einen Löschungswunsch
-          kannst du über unsere Kontaktwege stellen. Die Löschung umfasst
-          grundsätzlich auch das zugeordnete Profil und den Wartelisteneintrag,
-          soweit keine gesetzlichen Gründe einer Löschung entgegenstehen.
+          bleiben für die Dauer des Kontos erforderlich. Du kannst dein Konto
+          unter <Link href="/konto/loeschen">Konto löschen</Link> selbst
+          endgültig entfernen. Dabei werden der Authentifizierungszugang, das
+          Profil, Wartelisten- und Newsletterdaten einschließlich
+          Einwilligungsnachweisen, Punkte samt Buchungen und persönliche
+          Rabattcodes aus dem aktuellen Kontosystem gelöscht. Du wirst
+          abgemeldet. Administrationskonten sind von dieser
+          Selbstbedienungsfunktion ausgenommen.
         </p>
         <p>
           Neue Registrierungen und Passwort-E-Mails sind derzeit deaktiviert.
@@ -135,14 +140,87 @@ export default function PrivacyPage() {
       </section>
       <section>
         <h2>Newsletter und Einwilligungsnachweis</h2>
-        <p>Der Newsletter ist unabhängig von Konto und Warteliste freiwillig. Er umfasst Markenneuigkeiten und spätere Shop-Angebote per E-Mail. Die Checkbox bei der Registrierung ist nicht vorausgewählt. Ein neuer Eintrag wird erst nach Bestätigung der E-Mail-Adresse aktiviert. Bestehende Kunden können ihre Einstellung im geschützten Portal ändern. Der Versand startet erst nach Einrichtung des Maildienstes.</p>
-        <p>Wir speichern deine Nutzerkennung, den aktuellen Anmeldestatus und zur Dokumentation Zeitpunkte, Quelle und Textversion der Einwilligung sowie spätere Abmeldungen. Rechtsgrundlage des Newsletters ist Art. 6 Abs. 1 Buchst. a DSGVO. Du kannst ihn jederzeit im Portal oder durch eine Nachricht abbestellen. Danach wird die Adresse nicht mehr für diesen Newsletter verwendet.</p>
-        <p>Der Nachweis einer erteilten oder widerrufenen Einwilligung wird nur so lange vorgehalten, wie er für gesetzliche Nachweispflichten bzw. die Abwehr von Rechtsansprüchen erforderlich ist (Art. 6 Abs. 1 Buchst. c bzw. f DSGVO). Bei Löschung des Kontos werden die zugeordneten Newsletterdaten in diesem System mit gelöscht.</p>
+        <p>
+          Der Newsletter ist unabhängig von Konto und Warteliste freiwillig. Er
+          umfasst Markenneuigkeiten und spätere Shop-Angebote per E-Mail. Die
+          Checkbox bei der Registrierung ist nicht vorausgewählt. Ein neuer
+          Eintrag wird erst nach Bestätigung der E-Mail-Adresse aktiviert.
+          Bestehende Kunden können ihre Einstellung im geschützten Portal
+          ändern. Der Versand startet erst nach Einrichtung des Maildienstes.
+        </p>
+        <p>
+          Wir speichern deine Nutzerkennung, den aktuellen Anmeldestatus und zur
+          Dokumentation Zeitpunkte, Quelle und Textversion der Einwilligung
+          sowie spätere Abmeldungen. Rechtsgrundlage des Newsletters ist Art. 6
+          Abs. 1 Buchst. a DSGVO. Du kannst ihn jederzeit im Portal oder durch
+          eine Nachricht abbestellen. Danach wird die Adresse nicht mehr für
+          diesen Newsletter verwendet.
+        </p>
+        <p>
+          Der Nachweis einer erteilten oder widerrufenen Einwilligung wird nur
+          so lange vorgehalten, wie er für gesetzliche Nachweispflichten bzw.
+          die Abwehr von Rechtsansprüchen erforderlich ist (Art. 6 Abs. 1
+          Buchst. c bzw. f DSGVO). Bei Löschung des Kontos werden die
+          zugeordneten Newsletterdaten in diesem System mit gelöscht.
+        </p>
       </section>
       <section>
         <h2>Punktekonto und Administration</h2>
-        <p>Für dein Punktekonto speichern wir die Nutzerkennung, den aktuellen Punktestand und eine Buchungshistorie mit Punktzahl, Grund, Zeitpunkt und Kennung der ausführenden Administration. Kunden sehen nur ihre eigenen Daten. Berechtigte Administratoren können Kundenkonten und Kontaktanfragen einsehen und Punktebuchungen ausführen. Die Verarbeitung dient dem gewünschten Kundenportal nach Art. 6 Abs. 1 Buchst. b DSGVO sowie dem Schutz vor fehlerhaften oder missbräuchlichen Buchungen nach Art. 6 Abs. 1 Buchst. f DSGVO.</p>
-        <p>Punkte können derzeit nicht für Einkäufe eingelöst werden. Die Kontodaten und Buchungen werden für die Laufzeit des Kontos vorgehalten und bei seiner Löschung aus dem aktuellen System entfernt. Bei Einführung des Onlineshops sind die dann geltenden Zwecke und Aufbewahrungspflichten zusätzlich zu berücksichtigen.</p>
+        <p>
+          Für dein Punktekonto speichern wir die Nutzerkennung, den aktuellen
+          Punktestand und eine Buchungshistorie mit Punktzahl, Grund, Zeitpunkt
+          und Kennung der ausführenden Administration. Kunden sehen nur ihre
+          eigenen Daten. Berechtigte Administratoren können Kundenkonten und
+          Kontaktanfragen einsehen und Punktebuchungen ausführen. Die
+          Verarbeitung dient dem gewünschten Kundenportal nach Art. 6 Abs. 1
+          Buchst. b DSGVO sowie dem Schutz vor fehlerhaften oder
+          missbräuchlichen Buchungen nach Art. 6 Abs. 1 Buchst. f DSGVO.
+        </p>
+        <p>
+          Punkte können derzeit nicht für Einkäufe eingelöst werden. Die
+          Kontodaten und Buchungen werden für die Laufzeit des Kontos
+          vorgehalten und bei seiner Löschung aus dem aktuellen System entfernt.
+          Bei Einführung des Onlineshops sind die dann geltenden Zwecke und
+          Aufbewahrungspflichten zusätzlich zu berücksichtigen.
+        </p>
+      </section>
+      <section>
+        <h2>Bestellhistorie, Lieblingsprodukte und Rabattcodes</h2>
+        <p>
+          Das Portal ist für den späteren Onlineshop vorbereitet. Sobald
+          Bestellungen möglich sind, werden Bestellnummer, Zeitpunkt, Status,
+          bestellte Artikel und Varianten, Mengen und Preise im Konto angezeigt.
+          „Meine Lieblingsprodukte“ wird aus bezahlten, nicht stornierten oder
+          vollständig erstatteten Bestellungen abgeleitet; es ist keine
+          gesonderte Werbeprofilierung. Derzeit gibt es noch keinen aktiven
+          Checkout.
+        </p>
+        <p>
+          Für bestätigte Kundenkonten speichern wir fünf persönliche Gutscheine
+          mit Code, Rabattstaffel, Mindestwarenwert und gegebenenfalls
+          Aktivierungs- und Einlösungszeitpunkt. Dies dient der Bereitstellung
+          deiner Kontovorteile und späteren Vertragsabwicklung nach Art. 6 Abs.
+          1 Buchst. b DSGVO. Einlösungen dürfen nur durch den berechtigten
+          Shopserver verarbeitet werden.
+        </p>
+        <p>
+          Bei Kontolöschung endet der Portalzugriff; die Zuordnung vorhandener
+          Bestellungen zum Authentifizierungskonto wird entfernt. Gesetzlich
+          erforderliche Bestell- und Rechnungsbelege sind nach Art. 6 Abs. 1
+          Buchst. c DSGVO getrennt für die jeweils einschlägige Pflicht
+          aufzubewahren und anschließend zu löschen. Vor Shopstart werden der
+          tatsächliche Zahlungs-/Versandprozess und die konkreten
+          Aufbewahrungsfristen ergänzt. Kontolöschung storniert keine
+          Bestellung.
+        </p>
+        <p>
+          Frühere Kontaktanfragen, Hosting-/Sicherheitsprotokolle und
+          gegebenenfalls Sicherungskopien werden durch die Kontolöschung nicht
+          automatisch mit entfernt. Für sie gelten die jeweiligen Zwecke und
+          Fristen aus dieser Erklärung. Weitergehende Löschungs- oder
+          Auskunftsanfragen kannst du über unsere Kontaktwege stellen;
+          notwendige Ausnahmen werden im konkreten Fall geprüft.
+        </p>
       </section>
       <section>
         <h2>6. Supabase und Empfänger</h2>

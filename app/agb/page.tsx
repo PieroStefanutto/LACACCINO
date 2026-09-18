@@ -92,12 +92,57 @@ export default function TermsPage() {
       </section>
       <section>
         <h2>7. Newsletter</h2>
-        <p>Die Anmeldung zum Newsletter ist freiwillig und unabhängig von Warteliste oder Kontonutzung. Er informiert per E-Mail über die Marke und spätere Shop-Angebote. Du kannst deine Einwilligung jederzeit im Kundenportal oder durch eine Nachricht zurücknehmen. Der Versand beginnt nach Einrichtung des Maildienstes.</p>
+        <p>
+          Die Anmeldung zum Newsletter ist freiwillig und unabhängig von
+          Warteliste oder Kontonutzung. Er informiert per E-Mail über die Marke
+          und spätere Shop-Angebote. Du kannst deine Einwilligung jederzeit im
+          Kundenportal oder durch eine Nachricht zurücknehmen. Der Versand
+          beginnt nach Einrichtung des Maildienstes.
+        </p>
       </section>
       <section>
         <h2>8. Punktekonto für den späteren Shop</h2>
-        <p>Das Punktekonto zeigt Gutschriften und Korrekturen nachvollziehbar an. Derzeit gibt es keinen festgelegten Geldwert, keine Kaufbonusregel und keine Möglichkeit zur Einlösung oder Auszahlung. Ein angezeigter Stand stellt keine Bestellung oder Zahlungszusage dar.</p>
-        <p>Vor der Einführung eines verbindlichen Sammel- oder Einlöseprogramms werden dessen Regeln und Prämien gesondert bekannt gegeben. Bei einer aus deiner Sicht falschen Buchung kannst du uns kontaktieren. Eine Korrektur erscheint als eigene Buchung in der Historie.</p>
+        <p>
+          Das Punktekonto zeigt Gutschriften und Korrekturen nachvollziehbar an.
+          Derzeit gibt es keinen festgelegten Geldwert, keine Kaufbonusregel und
+          keine Möglichkeit zur Einlösung oder Auszahlung. Ein angezeigter Stand
+          stellt keine Bestellung oder Zahlungszusage dar.
+        </p>
+        <p>
+          Vor der Einführung eines verbindlichen Sammel- oder Einlöseprogramms
+          werden dessen Regeln und Prämien gesondert bekannt gegeben. Bei einer
+          aus deiner Sicht falschen Buchung kannst du uns kontaktieren. Eine
+          Korrektur erscheint als eigene Buchung in der Historie.
+        </p>
+      </section>
+      <section>
+        <h2>9. Persönliche Rabattcodes für den künftigen Shop</h2>
+        <p>
+          Bestätigte Kundenkonten erhalten drei einzelne Codes für jeweils 10 %
+          ab 50 € Warenwert, einen Code für 15 % ab 150 € und einen Code für 20
+          % ab 500 €. Die Aktivierung im Portal ist kostenlos, verbraucht den
+          Code nicht und löst keine Bestellung aus. Aktuell ist kein Ablaufdatum
+          festgelegt.
+        </p>
+        <p>
+          Jeder Code ist einmal für das zugehörige Kundenkonto vorgesehen. Pro
+          Bestellung kann ein Code genutzt werden; eine Kombination der Codes
+          ist ausgeschlossen. Der Mindestwarenwert wird vor Anwendung dieses
+          Rabatts und ohne Versandkosten ermittelt; Versandkosten werden nicht
+          rabattiert. Die technische Einlösung wird erst mit dem späteren
+          Checkout verfügbar.
+        </p>
+      </section>
+      <section>
+        <h2>10. Konto selbst löschen</h2>
+        <p>
+          Im Kundenportal kannst du dein Konto nach ausdrücklicher Bestätigung
+          endgültig löschen. Profil, Punktehistorie, persönliche Codes,
+          Newsletter- und Wartelistendaten werden dabei entfernt; der Zugang
+          endet. Eine Wiederherstellung über das Portal ist nicht möglich. Die
+          Löschung storniert keine Bestellungen und berührt keine gesetzlichen
+          Aufbewahrungspflichten. Einzelheiten findest du im Datenschutz.
+        </p>
       </section>
     </LegalPage>
   );

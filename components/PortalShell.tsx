@@ -20,14 +20,46 @@ export function PortalHeader({ admin = false }: { admin?: boolean }) {
     </header>
   );
 }
-export function PortalNavigation() {
+export function PortalNavigation({
+  current = "uebersicht",
+}: {
+  current?: string;
+}) {
   return (
     <nav className="portal-nav" aria-label="Kundenportal">
-      <a href="#uebersicht">Übersicht</a>
-      <a href="#punkte">Mein Punktekonto</a>
-      <a href="#profil">Persönliche Angaben</a>
-      <a href="#nachrichten">Nachrichten & E-Mails</a>
-      <a href="#sicherheit">Zugang & Sicherheit</a>
+      <Link
+        href="/konto"
+        aria-current={current === "uebersicht" ? "page" : undefined}
+      >
+        Übersicht
+      </Link>
+      <Link
+        href="/konto/bestellungen"
+        aria-current={current === "bestellungen" ? "page" : undefined}
+      >
+        Bestellhistorie
+      </Link>
+      <Link
+        href="/konto/lieblingsprodukte"
+        aria-current={current === "lieblingsprodukte" ? "page" : undefined}
+      >
+        Meine Lieblingsprodukte
+      </Link>
+      <Link
+        href="/konto/rabattcodes"
+        aria-current={current === "rabattcodes" ? "page" : undefined}
+      >
+        Meine Rabattcodes
+      </Link>
+      <Link href="/konto#punkte">Mein Punktekonto</Link>
+      <Link href="/konto#profil">Persönliche Angaben</Link>
+      <Link href="/konto#nachrichten">Nachrichten & E-Mails</Link>
+      <Link
+        href="/konto#sicherheit"
+        aria-current={current === "sicherheit" ? "page" : undefined}
+      >
+        Zugang & Sicherheit
+      </Link>
     </nav>
   );
 }
