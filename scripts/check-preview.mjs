@@ -6,13 +6,13 @@ assert.equal(response.status, 200);
 const html = await response.text();
 // Check server-rendered content, not strings embedded in hydration scripts.
 const markup = html.replace(/<script\b[^>]*>[\s\S]*?<\/script>/g, "");
-for (const text of ["Geplanter Markenstart 2029", "Kaffee to go, als Luxus gedacht.", "Intro überspringen", "Kaffee &amp; Rituale", "Mallorca", "Stuttgart", "Hamburg", "Bangkok", "London", "Dubai"]) {
+for (const text of ["Marktstart 2029", "Der Tag zieht weiter.", "Zur Warteliste", "Kaffee &amp; Rituale", "Mallorca", "Stuttgart", "Hamburg", "Bangkok", "London", "Dubai"]) {
   assert.ok(markup.includes(text), `Fehlender Inhalt: ${text}`);
 }
 const ids = new Set([...markup.matchAll(/\bid="([^"]+)"/g)].map((match) => match[1]));
 const anchors = [...markup.matchAll(/href="#([^"]+)"/g)].map((match) => match[1]);
 for (const anchor of anchors) assert.ok(ids.has(anchor), `Fehlendes Sprungziel: ${anchor}`);
-assert.match(markup, /class="coffee-storm" hidden=""/);
+assert.match(markup, /class="wordmark-dust"/);
 assert.match(markup, /<details class="mobile-menu"/);
 assert.equal((markup.match(/<h1\b/g) || []).length, 1);
 
