@@ -1,29 +1,7 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
 import "./globals.css";
-
-const editorial = localFont({
-  src: [
-    {
-      path: "../node_modules/@fontsource-variable/cormorant-garamond/files/cormorant-garamond-latin-wght-normal.woff2",
-      weight: "300 700",
-      style: "normal",
-    },
-    {
-      path: "../node_modules/@fontsource-variable/cormorant-garamond/files/cormorant-garamond-latin-wght-italic.woff2",
-      weight: "300 700",
-      style: "italic",
-    },
-  ],
-  variable: "--font-editorial",
-  display: "swap",
-});
-const body = localFont({
-  src: "../node_modules/@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2",
-  variable: "--font-body",
-  weight: "200 800",
-  display: "swap",
-});
+import "./legal.css";
+import { LegalFooter } from "@/components/LegalFooter";
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.SITE_URL || "https://lacaccino.vercel.app"),
@@ -59,8 +37,11 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="de" className={`${editorial.variable} ${body.variable}`}>
-      <body>{children}</body>
+    <html lang="de">
+      <body>
+        {children}
+        <LegalFooter />
+      </body>
     </html>
   );
 }

@@ -1,17 +1,25 @@
-﻿# LACACCINO
+# LACACCINO
 
-Eine entstehende Luxusmarke für Coffee to go. Geplanter Marktstart: 2029. Produktbilder sind Designstudien; die sechs Inspirationsorte sind keine Filialankündigungen.
+## Website und Datenbank
 
-## Entwicklung und Vorschau
+Die Website ist über GitHub `main` mit den Vercel-Projekten `lacaccino` und `lacaccino-mfw9` verbunden. Hauptadresse: https://lacaccino.vercel.app.
 
-Node.js 24 und npm:
+Neu: `/kontakt` speichert Anfragen in Supabase, `/konto` bietet Anmeldung, ein privates Profil und die freiwillige Warteliste für den Markenstart 2029. Die Warteliste verlangt eine bestätigte E-Mail-Adresse und lässt sich im Konto wieder verlassen. Registrierung und Passwort-E-Mails bleiben bis zur späteren SMTP-Einrichtung gesperrt (`AUTH_EMAIL_ENABLED`).
+
+Einrichtung, Zugriffsschutz und Betrieb stehen in [docs/supabase-setup.md](docs/supabase-setup.md). Projektschlüssel liegen ausschließlich in ignorierten lokalen Umgebungsdateien und geschützten Vercel-Variablen.
+
+Lokale Next.js-Markenwebsite für eine entstehende Luxusmarke für Kaffee to go. Geplanter Markenstart: 2029. Alle Produktbilder sind Designkonzepte; die sechs Orte sind Zukunftsvisionen, keine Filialankündigungen.
+
+## Lokal ansehen
+
+Voraussetzung: Node.js 24 und npm. PowerShell im Projektordner öffnen:
 
 ```powershell
 npm.cmd install
 npm.cmd run dev
 ```
 
-Die Überarbeitung liegt auf `design/lacaccino-refinement`. Vorschauen werden über Vercel bereitgestellt. Die Produktionsprojekte `lacaccino` und `lacaccino-mfw9` bleiben mit GitHub `main` verbunden.
+Dann `http://localhost:3000` öffnen. Falls Port 3000 bereits belegt ist, die im Terminal ausgegebene Adresse verwenden. Beenden mit `Strg+C`.
 
 ```powershell
 npm.cmd run lint
@@ -20,24 +28,32 @@ npm.cmd run build
 npm.cmd start
 ```
 
-## Gestaltung und Bewegung
+`start` führt den zuvor gebauten Produktionsstand aus.
 
-Creme und Espresso mit zurückhaltenden Champagnerakzenten. Cormorant Garamond und Manrope werden lokal eingebunden. Vorhandene Bilder bleiben unverändert; responsive CSS-Ausschnitte zeigen Becher und Ritual. Die Warteliste und der Marktstart stehen im ersten Bildschirm.
+Bei laufender Website prüft `npm.cmd run check:preview` in einem zweiten Terminal den HTTP-Aufruf, den serverseitigen Inhalt, interne Sprungziele und die tatsächliche Auslieferung aller eingebundenen Produktbilder und Stylesheets. Dies ist ein technischer Abruf, keine Browser-Bedienungsprüfung.
 
-Ein seitlich ziehender Canvas-Sandschleier liegt im Hero-Motiv. Maximal 56 Partikel auf Smartphones, 128 auf Desktop; reduzierte Auflösung und Bildrate auf kleinen Geräten. Er pausiert außerhalb des Sichtfelds und bei inaktivem Tab. Ein kleiner Stern erscheint höchstens alle 16 Sekunden. Reduzierte Bewegung schaltet beide Effekte und Einblendungen ab. Die frühere Intro-Implementierung bleibt im Quellbestand, wird auf der Seite aber nicht mehr eingebunden.
+## Animation und Bedienung
 
-Mobiles Menü und Inspirationskarte verwenden native HTML-Disclosures. Alle Inhalte bleiben ohne Animation lesbar. Das Menü schließt bei Auswahl und mit Escape; die Ortsliste bietet große Tastatur- und Touch-Ziele.
+- Optionales Canvas-Intro: 5,4 Sekunden, stumm, stilisierte Bohnen und Staub. Keine Videodatei oder aufwendige 3D-Szene. Überspringen per sichtbarem Button, Escape, Tab, Scrollen oder Klick. Die Seite lädt unabhängig darunter.
+- Das Intro merkt sich seine Wiedergabe nur im Arbeitsspeicher der laufenden Seite. Es schreibt weder Cookies noch Local/Session Storage. Ein vollständiges Neuladen kann es erneut abspielen.
+- Bei reduzierter Bewegung, deaktiviertem JavaScript oder Canvas-Problemen erscheint die Seite direkt. Ein separater Zeitwächter entfernt das Intro spätestens nach 5,8 Sekunden Laufzeit. Langsames Nachladen wird nach 1,4 Sekunden abgebrochen, ohne die Seite zu verdecken.
+- Goldstaub an der Wortmarke und ein einzelner, sanfter Stern alle fünf Sekunden. Keine schnellen Blitze. Partikelzahl und Auflösung sind auf Smartphones begrenzt; Effekte pausieren außerhalb des sichtbaren Bereichs und bei verstecktem Browser-Tab. Ein laufendes Intro endet beim Tabwechsel.
+- Native Web Animations API für Einblendungen und Lichtbewegungen; Canvas 2D für Partikel. Keine zusätzliche Animationsbibliothek. Auf Smartphones und bei reduzierter Bewegung wird die Ritualfolge ohne Sticky-Bildwechsel dargestellt.
+- Das mobile Menü ist ein natives HTML-Disclosure und funktioniert auch ohne JavaScript. Mit JavaScript schließen Auswahl und Escape das Menü.
+- Karte und Ortsliste sind per Tastatur bedienbar (Tab, Enter oder Leertaste). Der Europa-Ausschnitt macht eng beieinanderliegende Punkte besser auswählbar; die Ortsliste bietet große Touch-Ziele.
 
-## Konten, Kontakt und Warteliste
+## Bilder und Karte
 
-`/kontakt` speichert Anfragen in Supabase. `/konto` bietet Anmeldung, privates Profil und die freiwillige Warteliste. Eine bestätigte E-Mail-Adresse ist dafür erforderlich. Die Anmeldung kann im Konto widerrufen werden. Registrierung und Passwort-E-Mails bleiben bis zur späteren SMTP-Einrichtung deaktiviert (`AUTH_EMAIL_ENABLED` ist nicht aktiviert).
+Die 13 Originalbilder in `public/images` bleiben unverändert. `next/image` liefert passende Größen und moderne Bildformate aus. Bildflächen haben feste Seitenverhältnisse. Die Karte verwendet lokal installierte Natural-Earth-Geometrie aus `world-atlas` (Public Domain); `d3-geo` und `topojson-client` berechnen die SVG-Pfade auf dem Server. Zur Laufzeit wird kein Kartendienst kontaktiert.
 
-Einrichtung und Zugriffsschutz: [docs/supabase-setup.md](docs/supabase-setup.md). Schlüssel gehören ausschließlich in ignorierte lokale Umgebungsdateien oder geschützte Vercel-Variablen. Keine Schlüssel im Browsercode.
+Es gibt keine Tracker, extern geladenen Schriften, Audio-Autoplay, Preise oder Bestellfunktionen. Offene Kontakt- und Rechtstextangaben sowie die spätere Filmproduktion stehen in `TODO.md`.
 
-## Prüfung
+## Stand der Prüfung
 
-`npm.cmd run check:preview -- http://localhost:3000` prüft HTTP, serverseitige Inhalte, Sprungziele, Bilder und CSS. `scripts/check-community-http.mjs` prüft gegen einen laufenden Produktionsbuild die Serveraktionen für Anmeldung, Profil, Warteliste, Kontakt, Origin-Schutz und Abmeldung. Temporäre Testdaten werden anschließend gelöscht.
+`npm.cmd test` prüft den Canvas-Renderer isoliert: Dauer und Auflösung, Abbruch, Ende bei inaktivem Tab, Renderingfehler und mobile Ressourcenbegrenzung. Diese Tests sind keine Browserprüfung.
 
-Der Designcheck umfasst Desktop (1440 px), Smartphone (390 px), kleine Smartphones (320 px), Menü, Ortswechsel, Formulare und reduzierte Bewegung. Screenshots liegen lokal unter `artifacts/design-review/` und werden nicht hochgeladen.
+Für den manuellen Abnahmelauf: Desktop und Smartphone, Intro überspringen, erneut laden, reduzierte Bewegung, Tastaturnavigation, Menü und alle sechs Kartenorte durchgehen. Für die Prüfung ohne JavaScript die Website mit deaktiviertem JavaScript neu laden: alle Hauptinhalte sollen sichtbar bleiben. In der Arbeitsumgebung war kein Browser verbunden; Screenshots und diese Bedienungsprüfungen konnten daher nicht automatisiert durchgeführt werden.
 
-Die Karte verwendet lokale Natural-Earth-Geometrie aus `world-atlas`. Es werden weder Kartendienste noch externe Schriftserver kontaktiert. Noch offene redaktionelle Angaben stehen in `TODO.md`.
+## Rechtliche Informationen
+
+Impressum, Datenschutz, AGB/Nutzungshinweise und Cookie-Information sind über den globalen Footer erreichbar. Die Anbieterangaben stammen aus dem Dächle-Impressum. Fehlende Angaben und betriebliche Prüfpunkte sind in [docs/legal-review.md](docs/legal-review.md) dokumentiert. Die Seiten bleiben bis zur Klärung in der Vorschau. Das ursprüngliche dunkle Design wurde auf Wunsch wiederhergestellt.

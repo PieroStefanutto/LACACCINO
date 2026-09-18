@@ -1,0 +1,125 @@
+/* Legal additions inherit the existing brand palette and leave the homepage intact. */
+.legal-page {
+  padding-block: 40px 72px;
+}
+.legal-page > .wordmark {
+  display: inline-block;
+}
+.legal-heading {
+  max-width: 800px;
+  margin-block: 70px 44px;
+}
+.legal-heading h1 {
+  font-size: clamp(2.6rem, 6vw, 5rem);
+  overflow-wrap: anywhere;
+}
+.legal-heading > p:not(.eyebrow) {
+  max-width: 650px;
+  margin-top: 24px;
+}
+.legal-date {
+  font-size: 0.72rem;
+  opacity: 0.7;
+}
+.legal-content {
+  max-width: 780px;
+  font-size: 0.95rem;
+  line-height: 1.85;
+  overflow-wrap: anywhere;
+}
+.legal-content section {
+  margin-block: 42px;
+}
+.legal-content h2 {
+  font-size: clamp(1.65rem, 3vw, 2.1rem);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  margin-bottom: 20px;
+}
+.legal-content p + p {
+  margin-top: 18px;
+}
+.legal-content a,
+.form-note a {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: var(--gold);
+}
+.legal-content a:hover,
+.form-note a:hover {
+  text-decoration-thickness: 2px;
+}
+.legal-address {
+  font-style: normal;
+  margin-top: 20px;
+}
+.legal-address p {
+  margin-top: 18px;
+}
+.legal-draft {
+  padding: 18px 22px;
+  border: 1px solid var(--gold);
+  font-size: 0.82rem;
+}
+.cookie-facts {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 16px 28px;
+  margin-block: 26px;
+}
+.cookie-facts dt {
+  font-weight: 600;
+}
+.cookie-facts dd {
+  margin: 0;
+  min-width: 0;
+}
+.legal-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 30px;
+  padding-block: 22px 30px;
+  border-top: 1px solid var(--line);
+  font-size: 0.7rem;
+}
+.legal-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 24px;
+}
+.legal-footer a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+.legal-footer a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.legal-footer > p {
+  opacity: 0.75;
+}
+@media (max-width: 700px) {
+  .legal-heading {
+    margin-block: 45px 32px;
+  }
+  .legal-content {
+    font-size: 0.9rem;
+  }
+  .legal-content section {
+    margin-block: 34px;
+  }
+  .cookie-facts {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+  .cookie-facts dd {
+    margin-bottom: 16px;
+  }
+  .legal-footer {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

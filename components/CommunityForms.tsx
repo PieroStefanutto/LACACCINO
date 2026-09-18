@@ -1,6 +1,7 @@
 "use client";
 
 import { useActionState, useState } from "react";
+import Link from "next/link";
 import {
   authenticate,
   changePassword,
@@ -80,7 +81,10 @@ export function ContactForm({ enabled }: { enabled: boolean }) {
         </label>
         <p className="form-note">
           Wir speichern Name, E-Mail-Adresse und Nachricht. Bitte sende keine
-          vertraulichen Angaben. Deine Anfrage ist nicht öffentlich sichtbar.
+          vertraulichen Angaben. Deine Anfrage ist nicht öffentlich sichtbar. Du
+          kannst deine Einwilligung jederzeit für die Zukunft widerrufen.{" "}
+          Details findest du in der{" "}
+          <Link href="/datenschutz">Datenschutzerklärung</Link>.
         </p>
         <button className="button" type="submit">
           {pending
@@ -129,6 +133,12 @@ export function AuthForm({
         mode={mode}
         enabled={enabled && (mode === "login" || emailEnabled)}
       />
+      <p className="form-note">
+        Informationen zu deinen Kontodaten und notwendigen Anmeldecookies:{" "}
+        <Link href="/datenschutz">Datenschutz</Link> und{" "}
+        <Link href="/cookies">Cookies</Link>. Hinweise zum Angebot:{" "}
+        <Link href="/agb">AGB & Nutzungshinweise</Link>.
+      </p>
       {!emailEnabled && (
         <p className="form-note">
           Neue Konten und Passwort-E-Mails werden in Kürze freigeschaltet.
@@ -271,7 +281,8 @@ export function WaitlistForm({ joined }: { joined: boolean }) {
             <span>
               Ich möchte per E-Mail über den Markenstart von LACACCINO
               informiert werden. Ich kann meine Einwilligung jederzeit hier
-              widerrufen.
+              widerrufen. Weitere Informationen:{" "}
+              <Link href="/datenschutz">Datenschutz</Link>.
             </span>
           </label>
         )}

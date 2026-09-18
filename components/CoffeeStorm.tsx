@@ -4,7 +4,8 @@ import { useEffect, useRef } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { reducedMotionQuery } from "@/lib/motion";
 
-const sessionKey = "lacaccino:intro:seen";
+// In-memory only: decoration does not need cookies or browser storage.
+let introSeen = false;
 
 /** Optional decoration: the complete page is rendered independently underneath. */
 export function CoffeeStorm() {
@@ -18,10 +19,7 @@ export function CoffeeStorm() {
     const preference = window.matchMedia(reducedMotionQuery);
     if (!element || !surface || preference.matches || document.hidden || window.scrollY > 30 || window.location.hash) return;
 
-    try {
-      // If session storage is unavailable, do not risk replaying the introduction.
-      if (sessionStorage.getItem(sessionKey)) return;
-    } catch { return; }
+    if (introSeen) return;
 
     let disposed = false;
     let stopDrawing: (() => void) | undefined;
@@ -62,7 +60,7 @@ export function CoffeeStorm() {
       try {
         const context = surface.getContext("2d", { alpha: false });
         if (!context) { finish(); return; }
-        sessionStorage.setItem(sessionKey, "1");
+        introSeen = true;
         stopDrawing = startStorm(surface, context, element, finish);
         if (disposed) { stopDrawing(); return; }
         element.hidden = false;

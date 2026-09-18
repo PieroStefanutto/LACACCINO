@@ -1,76 +1,97 @@
-/** A quiet, wind-driven veil. Work stops outside the viewport or a visible tab. */
+// Tiny particles sampled along the actual wordmark's outline, not a video asset.
 export function startWordmarkDust(canvas: HTMLCanvasElement) {
   const context = canvas.getContext("2d");
-  if (!context || !window.IntersectionObserver || !window.ResizeObserver)
-    return () => {};
+  const label = canvas.parentElement?.querySelector<HTMLElement>(".hero__wordmark");
+  if (!context || !label || !window.IntersectionObserver || !window.ResizeObserver) return () => {};
   const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
-  let width = 0,
-    height = 0,
-    frame = 0,
-    last = 0,
-    phase = 0;
-  let visible = false,
-    disposed = false;
-  let particles: { x: number; y: number; speed: number; size: number }[] = [];
-  const mobile = window.matchMedia("(max-width: 700px)").matches;
-  const resize = () => {
-    ({ width, height } = canvas.getBoundingClientRect());
+  let width = 0;
+  let height = 0;
+  let particles: { x: number; y: number; angle: number; size: number }[] = [];
+  let frame = 0;
+  let visible = false;
+  let lastFrame = 0;
+  let phase = 0;
+  let disposed = false;
+  const mobile = window.matchMedia("(max-width: 760px)").matches;
+  const sample = () => {
+    const rect = canvas.getBoundingClientRect();
+    const type = getComputedStyle(label);
+    width = rect.width;
+    height = rect.height;
     const ratio = Math.min(window.devicePixelRatio || 1, mobile ? 1 : 1.5);
     canvas.width = Math.round(width * ratio);
     canvas.height = Math.round(height * ratio);
     context.setTransform(ratio, 0, 0, ratio, 0, 0);
-    particles = Array.from({ length: mobile ? 56 : 128 }, () => ({
-      x: Math.random(),
-      y: Math.random(),
-      speed: 0.012 + Math.random() * 0.021,
-      size: 0.35 + Math.random() * 0.65,
-    }));
+    const mask = document.createElement("canvas");
+    mask.width = Math.ceil(width);
+    mask.height = Math.ceil(height);
+    const ink = mask.getContext("2d", { willReadFrequently: true });
+    if (!ink) return;
+    ink.font = `${type.fontWeight} ${type.fontSize} ${type.fontFamily}`;
+    ink.textBaseline = "middle";
+    ink.strokeStyle = "white";
+    ink.lineWidth = 1.2;
+    const text = label.textContent || "LACACCINO";
+    const spacing = parseFloat(type.letterSpacing) || 0;
+    const textWidth = ink.measureText(text).width + spacing * (text.length - 1);
+    let x = (width - textWidth) / 2;
+    for (const character of text) {
+      ink.strokeText(character, x, height / 2 + parseFloat(type.fontSize) * .04);
+      x += ink.measureText(character).width + spacing;
+    }
+    const pixels = ink.getImageData(0, 0, mask.width, mask.height).data;
+    const edges: { x: number; y: number }[] = [];
+    for (let y = 0; y < mask.height; y += 3) {
+      for (let x = 0; x < mask.width; x += 3) {
+        if (pixels[(y * mask.width + x) * 4 + 3] > 30) edges.push({ x, y });
+      }
+    }
+    particles = Array.from({ length: Math.min(edges.length, mobile ? 48 : 110) }, () => {
+      const edge = edges[Math.floor(Math.random() * edges.length)];
+      return { ...edge, angle: Math.random() * Math.PI * 2, size: .4 + Math.random() * .8 };
+    });
   };
   const draw = (now: number) => {
     frame = 0;
     if (disposed || !visible || document.hidden || preference.matches) return;
     frame = requestAnimationFrame(draw);
-    if (last && now - last < (mobile ? 48 : 32)) return;
-    phase += Math.min(now - (last || now), 80) / 1000;
-    last = now;
+    if (lastFrame && now - lastFrame < (mobile ? 48 : 32)) return;
+    phase += Math.min(now - (lastFrame || now), 60) / 1000;
+    lastFrame = now;
     context.clearRect(0, 0, width, height);
-    context.fillStyle = "#cab184";
-    for (const p of particles) {
-      const travel = (p.x + phase * p.speed) % 1;
-      const x = travel * width;
-      const y =
-        height *
-        (0.64 + p.y * 0.29 - Math.sin(travel * 5 + phase * 0.14) * 0.07);
-      context.globalAlpha = Math.sin(travel * Math.PI) * (0.12 + p.y * 0.23);
+    for (const particle of particles) {
+      const angle = particle.angle + phase * .45;
+      const orbit = 2.5 + Math.sin(phase * .23 + particle.angle) * 2;
+      const x = particle.x + Math.cos(angle) * orbit;
+      const y = particle.y + Math.sin(angle) * orbit;
+      context.globalAlpha = .2 + (.5 + Math.sin(angle) * .5) * .45;
+      context.fillStyle = "#dbc19a";
       context.beginPath();
-      context.ellipse(x, y, p.size * 1.7, p.size * 0.6, -0.18, 0, Math.PI * 2);
+      context.arc(x, y, particle.size, 0, Math.PI * 2);
       context.fill();
     }
   };
   const sync = () => {
     cancelAnimationFrame(frame);
-    last = 0;
-    if (!disposed && visible && !document.hidden && !preference.matches)
-      frame = requestAnimationFrame(draw);
-    else context.clearRect(0, 0, width, height);
+    frame = 0;
+    lastFrame = 0;
+    if (!disposed && visible && !document.hidden && !preference.matches) frame = requestAnimationFrame(draw);
   };
-  const observer = new IntersectionObserver(([entry]) => {
-    visible = entry.isIntersecting;
-    sync();
+  const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); });
+  const resize = new ResizeObserver(() => {
+    try { sample(); } catch { dispose(); }
   });
-  const sizes = new ResizeObserver(resize);
-  resize();
-  observer.observe(canvas);
-  sizes.observe(canvas);
-  document.addEventListener("visibilitychange", sync);
-  preference.addEventListener("change", sync);
-  return () => {
+  const dispose = () => {
     disposed = true;
     cancelAnimationFrame(frame);
     observer.disconnect();
-    sizes.disconnect();
+    resize.disconnect();
     context.clearRect(0, 0, width, height);
     document.removeEventListener("visibilitychange", sync);
-    preference.removeEventListener("change", sync);
   };
+  try { sample(); } catch { dispose(); return dispose; }
+  observer.observe(canvas);
+  resize.observe(canvas);
+  document.addEventListener("visibilitychange", sync);
+  return dispose;
 }

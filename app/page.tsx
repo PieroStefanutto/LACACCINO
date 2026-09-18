@@ -1,236 +1,240 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowDown, ArrowUpRight, Plus } from "lucide-react";
+import { ArrowDown, ArrowDownRight, ArrowUpRight } from "lucide-react";
 import { Header } from "@/components/Header";
 import { VisionMap } from "@/components/VisionMap";
+import { CoffeeStorm } from "@/components/CoffeeStorm";
 import { MotionDirector } from "@/components/MotionDirector";
+import { GoldWaves } from "@/components/GoldWaves";
 import { RitualJourney } from "@/components/RitualJourney";
 import { getVisionGeometry } from "@/lib/vision-geometry";
 import { GoldSparkle, WordmarkDust } from "@/components/GoldAtmosphere";
+
 import { images } from "@/lib/images";
 
 export default function Home() {
   return (
     <>
-      <a className="skip-link" href="#main-content">
-        Zum Inhalt springen
-      </a>
+      <a className="skip-link" href="#main-content">Zum Inhalt springen</a>
+      <CoffeeStorm />
       <MotionDirector />
+      <GoldSparkle />
       <Header />
       <main id="main-content">
-        <section className="hero shell" id="start" aria-labelledby="hero-title">
-          <div className="hero__content">
-            <p className="eyebrow">Coffee to go. Neu gedacht.</p>
-            <h1 id="hero-title">
-              Der Tag zieht weiter.
-              <br />
-              <em>
-                Dein Moment
-                <br /> bleibt.
-              </em>
-            </h1>
-            <p className="hero__intro">
-              Eine neue Perspektive auf Kaffee to go.
-              <br />
-              Für die kleine Pause mit eigenem Stil.
-            </p>
-            <Link className="button" href="/konto#warteliste">
-              Zur Warteliste <ArrowUpRight size={17} aria-hidden="true" />
-            </Link>
-            <p className="launch-note">
-              <span className="material-dot" /> Marktstart 2029{" "}
-              <span>in Planung</span>
-            </p>
-          </div>
-          <figure className="hero__product">
-            <div className="hero__photograph signature-crop">
-              <Image
-                src={images.cups}
-                alt="Drei schwarze LACACCINO-Becher mit feinen goldenen Linien und schwarzen, cremefarbenen und goldenen Deckeln"
-                fill
-                preload
-                sizes="(max-width: 700px) 130vw, 75vw"
-              />
-              <WordmarkDust />
-              <GoldSparkle />
-              <span className="image-index">LACACCINO — Signature</span>
+      <section className="hero" id="start" aria-labelledby="hero-title">
+        <div className="hero__glow" data-ambient aria-hidden="true" />
+        <div className="hero__stage shell">
+          <div className="hero__overline"><span>Die neue Kultur des Coffee to go</span><span>Geplanter Markenstart 2029</span></div>
+          <div className="hero__wordmark-wrap"><p className="hero__wordmark">LACACCINO</p><WordmarkDust /></div>
+          <div className="hero__composition">
+            <div className="hero__content">
+              <p className="eyebrow hero__eyebrow">Aus einem goldenen<br />Kaffeesturm geboren.</p>
+              <h1 id="hero-title">Ein Moment.<br /><em>Ganz deiner.</em></h1>
+              <p className="hero__intro">Kaffee to go, als Luxus gedacht. Eine neue Markenwelt für die leisen Pausen, die im Gedächtnis bleiben.</p>
+              <a id="discover" className="button button--light" href="#marke">
+                <span>Die Welt von LACACCINO entdecken</span> <ArrowDownRight aria-hidden="true" size={18} />
+              </a>
+              <p className="launch-note"><span>2029</span> Geplanter Markenstart</p>
             </div>
-            <figcaption>
-              <span>Eine Form. Eine Haltung.</span>
-              <span>Designstudie / 01</span>
-            </figcaption>
-          </figure>
-          <div className="hero__bottom">
-            <a href="#marke">
-              <ArrowDown size={14} aria-hidden="true" /> Die Idee entdecken
-            </a>
-            <span>Kaffee. Form. Augenblick.</span>
-          </div>
-        </section>
-
-        <section
-          className="brand section shell"
-          id="marke"
-          aria-labelledby="brand-title"
-        >
-          <p className="eyebrow section-index">01 / Die Marke</p>
-          <div className="brand__copy" data-reveal>
-            <p className="eyebrow">Unterwegs ist auch ein Ort.</p>
-            <h2 id="brand-title">
-              Nicht jeder Moment
-              <br />
-              braucht <em>einen Anlass.</em>
-            </h2>
-            <p>
-              Zwischen zwei Terminen. Auf dem Weg nach Hause. Oder einfach, weil
-              gerade Zeit ist. LACACCINO entsteht für diese kleinen
-              Unterbrechungen des Alltags.
-            </p>
-            <p className="brand__signature">
-              Eine Marke im Entstehen. Mit Sinn für das Wesentliche.
-            </p>
-          </div>
-        </section>
-
-        <RitualJourney />
-
-        <section
-          className="collection section shell"
-          id="kollektion"
-          aria-labelledby="collection-title"
-        >
-          <div className="section-heading" data-reveal>
-            <div>
-              <p className="eyebrow">03 / Die Form</p>
-              <h2 id="collection-title">
-                Ein Becher.
-                <br />
-                <em>Eine eigene Sprache.</em>
-              </h2>
-            </div>
-            <p>
-              Klare Formen, dunkle Oberflächen und eine feine goldene Linie. Ein
-              erster Blick auf die geplante Designwelt.
-            </p>
-          </div>
-          <div className="collection-grid">
-            <figure data-reveal>
-              <div className="collection-image signature-crop">
-                <Image
-                  src={images.cups}
-                  alt="Signature-Becherentwürfe mit feinen goldenen Wellenlinien"
-                  fill
-                  sizes="(max-width: 700px) 130vw, 65vw"
-                />
+            <figure className="hero__product">
+              <div className="hero__photograph">
+                <Image src={images.hero} alt="Schwarze LACACCINO-Espressomaschine mit goldenen Wellenlinien und glänzenden Siebträgern" fill preload sizes="(max-width: 900px) 100vw, 65vw" className="hero__image" />
               </div>
-              <figcaption>
-                <div>
-                  <span className="eyebrow">01 / Signature</span>
-                  <h3>Auf das Wesentliche reduziert.</h3>
-                </div>
-                <span className="caption-tag">Designstudie</span>
-              </figcaption>
+              <figcaption><span>Die Kunst des Augenblicks</span><span>Designkonzept / 01</span></figcaption>
             </figure>
-            <figure data-reveal>
-              <div className="collection-image">
+          </div>
+          <div className="hero__bottom"><a href="#marke"><ArrowDown size={15} aria-hidden="true" /> Weiterscrollen & entdecken</a><span>Leise im Auftritt. Bleibend im Gefühl.</span></div>
+        </div>
+        <div className="hero__waves" data-ambient><GoldWaves /></div>
+      </section>
+
+      <section className="brand section" id="marke" aria-labelledby="brand-title">
+        <div className="shell">
+          <div className="section-heading section-heading--split">
+            <div data-reveal>
+              <p className="eyebrow">01 — Die Marke</p>
+              <h2 id="brand-title">Genuss bekommt<br />seinen eigenen Raum.</h2>
+            </div>
+            <p className="lead" data-reveal data-delay="140">
+              LACACCINO denkt Kaffee als bewusst gestalteten Moment — ruhig, warm und mit einem feinen Gespür für Details.
+            </p>
+          </div>
+
+          <div className="brand-story">
+            <div className="brand-story__image reveal-frame" data-reveal data-drift>
+              <Image
+                src={images.interior}
+                alt="Dunkler Stuhl und runder Tisch mit LACACCINO-Tasse in einem ruhigen Interieur"
+                fill
+                sizes="(max-width: 800px) 100vw, 65vw"
+                className="cover-image"
+              />
+              <span className="image-index">01 / Raum für Genuss</span>
+            </div>
+            <div className="brand-story__copy" data-reveal data-delay="160">
+              <span className="gold-rule" data-line aria-hidden="true" />
+              <h3>Design, das<br />zur Ruhe kommt.</h3>
+              <p>
+                Tiefe Töne, weiche Linien und klare Formen geben dem Ritual eine Bühne, ohne sich in den Vordergrund zu drängen.
+              </p>
+              <p>
+                Im Zentrum steht nicht das Tempo. Sondern der Augenblick dazwischen.
+              </p>
+              <p>Unsere Vision: eine Luxusmarke für Kaffee to go. Mit einer unverwechselbaren Designsprache, die den Genuss begleitet — wohin dein Tag dich führt.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="manifesto" aria-label="Markenhaltung">
+        <GoldWaves className="manifesto__waves" />
+        <div className="shell manifesto__inner">
+          <p className="eyebrow">Unsere Haltung</p>
+          <blockquote data-reveal>
+            „Weniger Eile.<br />Mehr von dem, was bleibt.“
+          </blockquote>
+          <p>Ein feiner Rahmen für persönliche Genussmomente.</p>
+        </div>
+      </section>
+
+      <section className="rituals section" id="rituale" aria-labelledby="rituals-title">
+        <div className="shell">
+          <div className="section-heading section-heading--split">
+            <div data-reveal>
+              <p className="eyebrow">02 — Kaffee & Rituale</p>
+              <h2 id="rituals-title">Das Besondere<br />liegt <em>im Moment.</em></h2>
+            </div>
+            <p className="lead" data-reveal data-delay="150">Vom ersten Duft bis zum letzten Schluck. Drei kleine Kapitel für eine Pause, die ganz dir gehört.</p>
+          </div>
+          <RitualJourney />
+        </div>
+      </section>
+
+      <section className="collection section" id="kollektion" aria-labelledby="collection-title">
+        <div className="shell">
+          <div className="section-heading section-heading--collection">
+            <div data-reveal>
+              <p className="eyebrow">03 — Kollektion</p>
+              <h2 id="collection-title">Eine Markenwelt<br />nimmt Form an.</h2>
+            </div>
+            <p className="concept-note" data-reveal data-delay="160">
+              Einblicke in Designkonzepte einer entstehenden Kollektion — noch kein Produktangebot.
+            </p>
+          </div>
+
+          <div className="editorial-grid">
+            <article className="editorial-card editorial-card--city" data-reveal>
+              <div className="editorial-card__image">
                 <Image
                   src={images.city}
-                  alt="Drei City-Edition-Becherentwürfe für Stuttgart, Mallorca und Bangkok"
+                  alt="Drei LACACCINO City-Edition-Becher mit Motiven aus Stuttgart, Mallorca und Bangkok"
                   fill
-                  sizes="(max-width: 700px) 100vw, 50vw"
+                  sizes="(max-width: 800px) 100vw, 57vw"
+                  className="cover-image"
                 />
               </div>
-              <figcaption>
-                <div>
-                  <span className="eyebrow">02 / City Edition</span>
-                  <h3>Inspiriert vom Unterwegssein.</h3>
-                </div>
-                <span className="caption-tag">Designstudie</span>
-              </figcaption>
-            </figure>
-          </div>
-          <p className="collection-note">
-            Die gezeigten Entwürfe sind Teil der Markenentwicklung. Sortiment
-            und Ausführung stehen noch nicht fest.
-          </p>
-        </section>
-
-        <section
-          className="vision section"
-          id="vision"
-          aria-labelledby="vision-title"
-        >
-          <div className="shell">
-            <div className="section-heading">
-              <div>
-                <p className="eyebrow">04 / Der Horizont</p>
-                <h2 id="vision-title">
-                  Eine Idee.
-                  <br />
-                  <em>Mit weitem Blick.</em>
-                </h2>
+              <div className="editorial-card__label">
+                <span>01</span>
+                <div><h3>City Editions</h3><p>Orte, übersetzt in Farbe und Linie.</p></div>
               </div>
-              <p>
-                LACACCINO ist für unterwegs gedacht. Sechs Orte dienen als
-                Inspiration für die Markenwelt – als gedankliche Horizonte, ohne
-                angekündigte Standorte.
-              </p>
-            </div>
-            <details className="vision-disclosure">
-              <summary>
-                <span>Die Orte unserer Inspiration</span>
-                <span>
-                  06 Horizonte <Plus size={19} aria-hidden="true" />
-                </span>
-              </summary>
-              <VisionMap geometry={getVisionGeometry()} />
-            </details>
-          </div>
-        </section>
+            </article>
 
-        <section
-          className="invitation section"
-          aria-labelledby="invitation-title"
-        >
-          <div className="shell invitation__inner" data-reveal>
-            <p className="eyebrow">Marktstart 2029 / in Planung</p>
-            <h2 id="invitation-title">
-              Am Anfang <em>dabei.</em>
-            </h2>
+            <article className="editorial-card editorial-card--cups" data-reveal data-delay="120">
+              <div className="editorial-card__image">
+                <Image
+                  src={images.cups}
+                  alt="Entwürfe schwarzer LACACCINO Mehrwegbecher mit goldenen Linien"
+                  fill
+                  sizes="(max-width: 800px) 100vw, 32vw"
+                  className="cover-image"
+                />
+              </div>
+              <div className="editorial-card__label">
+                <span>02</span>
+                <div><h3>Signature Cups</h3><p>Ein ruhiger Begleiter für unterwegs.</p></div>
+              </div>
+            </article>
+
+            <article className="editorial-card editorial-card--syrup" data-reveal>
+              <div className="editorial-card__image">
+                <Image
+                  src={images.syrups}
+                  alt="Fünf LACACCINO Sirupflaschen in unterschiedlichen Farbtönen"
+                  fill
+                  sizes="(max-width: 800px) 100vw, 48vw"
+                  className="cover-image"
+                />
+              </div>
+              <div className="editorial-card__label editorial-card__label--light">
+                <span>03</span>
+                <div><h3>Flavour Notes</h3><p>Nuancen für das persönliche Ritual.</p></div>
+              </div>
+            </article>
+
+            <article className="editorial-card editorial-card--biscuits" data-reveal data-delay="120">
+              <div className="editorial-card__image">
+                <Image
+                  src={images.biscuits}
+                  alt="LACACCINO Kaffeegebäck in schwarzer Verpackung neben einer Tasse"
+                  fill
+                  sizes="(max-width: 800px) 100vw, 40vw"
+                  className="cover-image"
+                />
+              </div>
+              <div className="editorial-card__label editorial-card__label--light">
+                <span>04</span>
+                <div><h3>Coffee Biscuits</h3><p>Ein kleines Detail zum Kaffee.</p></div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section className="vision section" id="vision" aria-labelledby="vision-title">
+        <div className="shell">
+          <div className="vision__heading" data-reveal>
+            <p className="eyebrow">04 — Unsere Vision</p>
+            <h2 id="vision-title">Eine Idee.<br />Viele Horizonte.</h2>
             <p>
-              Erfahre per E-Mail, wenn es Neuigkeiten zum geplanten Start gibt.
-              Mit deinem Konto kannst du deinen Platz auf der Warteliste
-              jederzeit verwalten.
-            </p>
-            <Link className="button button--light" href="/konto#warteliste">
-              Zur Warteliste <ArrowUpRight size={17} aria-hidden="true" />
-            </Link>
-            <p className="invitation__note">
-              Für bestehende, bestätigte Konten. Neue Registrierungen öffnen zu
-              einem späteren Zeitpunkt.
+              Diese Orte beschreiben eine Zukunftsvision der Markenwelt. Sie sind keine bestätigten oder angekündigten Filialen.
             </p>
           </div>
-        </section>
+          <VisionMap geometry={getVisionGeometry()} />
+        </div>
+      </section>
+
+      <section className="community section" id="dabei" aria-labelledby="community-title">
+        <div className="shell community-grid">
+          <div><p className="eyebrow">05 — In Verbindung bleiben</p><h2 id="community-title">Der Anfang.<br /><em>Mit dir.</em></h2><p className="community-intro">Begleite LACACCINO auf dem Weg zum geplanten Markenstart 2029.</p></div>
+          <div className="community-card"><p className="eyebrow">Die Warteliste</p><h3>Von Anfang an dabei.</h3><p>Erstelle dein Konto, bestätige deine E-Mail-Adresse und trage dich in die Warteliste ein. Deine Anmeldung kannst du dort jederzeit zurücknehmen.</p><Link className="button" href="/konto">Zum Konto & zur Warteliste <ArrowUpRight aria-hidden="true" size={17} /></Link><Link className="text-link" href="/kontakt">Eine Nachricht an LACACCINO</Link></div>
+        </div>
+      </section>
+
+      <section className="closing" aria-labelledby="closing-title">
+        <GoldWaves className="closing__waves" />
+        <div className="shell closing__inner" data-reveal>
+          <p className="eyebrow">Der Anfang eines Rituals</p>
+          <h2 id="closing-title">LACACCINO</h2>
+          <p>Ein Moment. Ganz deiner.</p>
+          <a className="text-link" href="#start">
+            Zurück nach oben <ArrowUpRight aria-hidden="true" size={17} />
+          </a>
+        </div>
+      </section>
+
       </main>
-      <footer className="site-footer shell">
-        <div className="footer-top">
-          <Link className="footer-brand" href="/">
-            LACACCINO
-          </Link>
-          <p>
-            Der Tag zieht weiter.
-            <br />
-            <em>Dein Moment bleibt.</em>
-          </p>
-          <nav aria-label="Footernavigation">
+      <footer className="footer">
+        <div className="shell footer__inner">
+          <a className="wordmark wordmark--footer" href="#start" aria-label="LACACCINO – zum Seitenanfang">LACACCINO</a>
+          <nav aria-label="Fußnavigation">
+            <a href="#marke">Die Marke</a>
+            <a href="#rituale">Kaffee & Rituale</a>
+            <a href="#kollektion">Kollektion</a>
+            <a href="#vision">Unsere Vision</a>
             <Link href="/kontakt">Kontakt</Link>
             <Link href="/konto">Mein Konto</Link>
-            <a href="#start">Nach oben ↑</a>
           </nav>
-        </div>
-        <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} LACACCINO</span>
-          <span>Eine Marke im Entstehen. Geplanter Marktstart 2029.</span>
+          <p>Markenstudie · Designkonzepte</p>
         </div>
       </footer>
     </>
