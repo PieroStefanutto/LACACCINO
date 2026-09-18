@@ -90,6 +90,15 @@ export default function TermsPage() {
           <Link href="/cookies">Cookies</Link>.
         </p>
       </section>
+      <section>
+        <h2>7. Newsletter</h2>
+        <p>Die Anmeldung zum Newsletter ist freiwillig und unabhängig von Warteliste oder Kontonutzung. Er informiert per E-Mail über die Marke und spätere Shop-Angebote. Du kannst deine Einwilligung jederzeit im Kundenportal oder durch eine Nachricht zurücknehmen. Der Versand beginnt nach Einrichtung des Maildienstes.</p>
+      </section>
+      <section>
+        <h2>8. Punktekonto für den späteren Shop</h2>
+        <p>Das Punktekonto zeigt Gutschriften und Korrekturen nachvollziehbar an. Derzeit gibt es keinen festgelegten Geldwert, keine Kaufbonusregel und keine Möglichkeit zur Einlösung oder Auszahlung. Ein angezeigter Stand stellt keine Bestellung oder Zahlungszusage dar.</p>
+        <p>Vor der Einführung eines verbindlichen Sammel- oder Einlöseprogramms werden dessen Regeln und Prämien gesondert bekannt gegeben. Bei einer aus deiner Sicht falschen Buchung kannst du uns kontaktieren. Eine Korrektur erscheint als eigene Buchung in der Historie.</p>
+      </section>
     </LegalPage>
   );
 }

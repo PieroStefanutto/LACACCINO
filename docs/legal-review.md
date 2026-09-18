@@ -48,3 +48,7 @@ Build, Lint und acht vorhandene Tests erfolgreich. HTTP-Prüfung von Inhalten, B
 - Beschwerderecht: https://www.baden-wuerttemberg.datenschutz.de/beschwerde/
 - Eingestellte EU-OS-Plattform (kein veralteter Pflichtlink eingebaut): https://consumer-redress.ec.europa.eu/site-relocation_en
 - BFSG-Anwendungsbereich: https://www.gesetze-im-internet.de/bfsg/__1.html
+
+## Ergänzung Kundenportal
+
+Die Vorschau beschreibt jetzt auch Vor-/Nachname, optionale Telefonnummer, getrennte Newsletter-Einwilligung mit Änderungsnachweis sowie Punktebuchungen und den berechtigten Admin-Zugriff. Noch kein Newsletterversand, Shop oder Punkte-Geldwert. Vor Newsletterstart Versanddienst, Nachweis-/Löschfristen und einen funktionierenden Abmeldelink in jeder Werbemail ergänzen und prüfen. Die bestehenden offenen Anbieter- und Vertragsangaben bleiben offen.

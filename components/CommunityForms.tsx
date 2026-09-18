@@ -2,6 +2,7 @@
 
 import { useActionState, useState } from "react";
 import Link from "next/link";
+import { RegistrationForm, LoginLinkForm } from "@/components/PortalForms";
 import {
   authenticate,
   changePassword,
@@ -109,7 +110,9 @@ export function AuthForm({
   enabled: boolean;
   emailEnabled: boolean;
 }) {
-  const [mode, setMode] = useState<"login" | "signup" | "reset">("login");
+  const [mode, setMode] = useState<"login" | "signup" | "reset" | "magic">(
+    "login",
+  );
   return (
     <div>
       <div className="form-tabs" aria-label="Kontozugang">
@@ -118,7 +121,7 @@ export function AuthForm({
           aria-pressed={mode === "login"}
           onClick={() => setMode("login")}
         >
-          Anmelden
+          Mit Passwort
         </button>
         <button
           type="button"
@@ -128,11 +131,24 @@ export function AuthForm({
           Konto erstellen
         </button>
       </div>
-      <AuthFields
-        key={mode}
-        mode={mode}
-        enabled={enabled && (mode === "login" || emailEnabled)}
-      />
+      <button
+        className="text-link form-text-button portal-magic-link"
+        type="button"
+        onClick={() => setMode("magic")}
+      >
+        Mit E-Mail-Link anmelden
+      </button>
+      {mode === "signup" ? (
+        <RegistrationForm enabled={enabled && emailEnabled} />
+      ) : mode === "magic" ? (
+        <LoginLinkForm enabled={enabled && emailEnabled} />
+      ) : (
+        <AuthFields
+          key={mode}
+          mode={mode}
+          enabled={enabled && (mode === "login" || emailEnabled)}
+        />
+      )}
       <p className="form-note">
         Informationen zu deinen Kontodaten und notwendigen Anmeldecookies:{" "}
         <Link href="/datenschutz">Datenschutz</Link> und{" "}

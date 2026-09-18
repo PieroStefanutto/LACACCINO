@@ -92,9 +92,11 @@ export default function PrivacyPage() {
         <p>
           Für die Anmeldung und Verwaltung eines Kontos verarbeitet Supabase
           deine E-Mail-Adresse, eine Nutzerkennung, Authentifizierungsdaten, den
-          Bestätigungsstatus und technische Sitzungsdaten. Dein optionaler
-          Anzeigename und der Zeitpunkt der Profilerstellung werden im Profil
-          gespeichert. Passwörter werden vom Authentifizierungsdienst geprüft;
+          Bestätigungsstatus und technische Sitzungsdaten. Vorname, Nachname,
+          die freiwillig angegebene Telefonnummer, der Anzeigename und der
+          Zeitpunkt der Profilerstellung werden im Profil gespeichert.
+          Neue Kunden erhalten nach Freischaltung des Mailversands einen
+          persönlichen Anmeldelink. Passwörter bestehender Konten werden vom Authentifizierungsdienst geprüft;
           wir speichern sie nicht in der Profiltabelle.
         </p>
         <p>
@@ -130,6 +132,17 @@ export default function PrivacyPage() {
           Zweck der Information zum Markenstart gebunden; entfällt dieser Zweck,
           ist der Eintrag zu löschen.
         </p>
+      </section>
+      <section>
+        <h2>Newsletter und Einwilligungsnachweis</h2>
+        <p>Der Newsletter ist unabhängig von Konto und Warteliste freiwillig. Er umfasst Markenneuigkeiten und spätere Shop-Angebote per E-Mail. Die Checkbox bei der Registrierung ist nicht vorausgewählt. Ein neuer Eintrag wird erst nach Bestätigung der E-Mail-Adresse aktiviert. Bestehende Kunden können ihre Einstellung im geschützten Portal ändern. Der Versand startet erst nach Einrichtung des Maildienstes.</p>
+        <p>Wir speichern deine Nutzerkennung, den aktuellen Anmeldestatus und zur Dokumentation Zeitpunkte, Quelle und Textversion der Einwilligung sowie spätere Abmeldungen. Rechtsgrundlage des Newsletters ist Art. 6 Abs. 1 Buchst. a DSGVO. Du kannst ihn jederzeit im Portal oder durch eine Nachricht abbestellen. Danach wird die Adresse nicht mehr für diesen Newsletter verwendet.</p>
+        <p>Der Nachweis einer erteilten oder widerrufenen Einwilligung wird nur so lange vorgehalten, wie er für gesetzliche Nachweispflichten bzw. die Abwehr von Rechtsansprüchen erforderlich ist (Art. 6 Abs. 1 Buchst. c bzw. f DSGVO). Bei Löschung des Kontos werden die zugeordneten Newsletterdaten in diesem System mit gelöscht.</p>
+      </section>
+      <section>
+        <h2>Punktekonto und Administration</h2>
+        <p>Für dein Punktekonto speichern wir die Nutzerkennung, den aktuellen Punktestand und eine Buchungshistorie mit Punktzahl, Grund, Zeitpunkt und Kennung der ausführenden Administration. Kunden sehen nur ihre eigenen Daten. Berechtigte Administratoren können Kundenkonten und Kontaktanfragen einsehen und Punktebuchungen ausführen. Die Verarbeitung dient dem gewünschten Kundenportal nach Art. 6 Abs. 1 Buchst. b DSGVO sowie dem Schutz vor fehlerhaften oder missbräuchlichen Buchungen nach Art. 6 Abs. 1 Buchst. f DSGVO.</p>
+        <p>Punkte können derzeit nicht für Einkäufe eingelöst werden. Die Kontodaten und Buchungen werden für die Laufzeit des Kontos vorgehalten und bei seiner Löschung aus dem aktuellen System entfernt. Bei Einführung des Onlineshops sind die dann geltenden Zwecke und Aufbewahrungspflichten zusätzlich zu berücksichtigen.</p>
       </section>
       <section>
         <h2>6. Supabase und Empfänger</h2>
