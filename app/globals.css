@@ -99,6 +99,8 @@ h1 em, h2 em { color: #c6b497; font-weight: 400; }
 .hero__wordmark-wrap { position: relative; margin: 20px 0 42px; }
 .hero__wordmark { text-align: center; font-size: clamp(2.5rem, 11.6vw, 10.8rem); line-height: 1.15; letter-spacing: .058em; text-indent: .058em; font-weight: 400; color: var(--gold-bright); background: var(--metal); background-clip: text; -webkit-text-fill-color: transparent; }
 .wordmark-dust { position: absolute; inset: -24px; width: calc(100% + 48px); height: calc(100% + 48px); pointer-events: none; }
+/* Keep the animated text mask on its own layer when drink images repaint. */
+.hero__wordmark { transform: translateZ(0); isolation: isolate; }
 .hero__wordmark[data-shimmer] {
   background-image: linear-gradient(110deg, transparent 39%, #f9ebd92b 46%, #fff7e6c4 50%, #f9ebd92b 54%, transparent 61%), var(--metal);
   background-size: 250% 100%, 100% 100%;
@@ -121,9 +123,15 @@ h1 em, h2 em { color: #c6b497; font-weight: 400; }
   .launch-emblem { top: -24px; bottom: auto; }
 }
 .hero__product { min-width: 0; }
-.hero__photograph { position: relative; aspect-ratio: 1.5; background: #0e0b08; }
-.hero__image { object-fit: contain; }
-.hero__photograph::after { content: ""; position: absolute; inset: 0; border: 1px solid rgb(219 194 150 / 18%); pointer-events: none; }
+.hero__photograph { position: relative; aspect-ratio: 1.25; }
+.drink-scene { position: absolute; inset: 0; display: grid; place-items: center; }
+.drink-scene__crop { position: relative; overflow: hidden; max-height: 100%; contain: paint; isolation: isolate; }
+.drink-scene__source { position: absolute; }
+.drink-selector { display: flex; flex-wrap: wrap; gap: 4px 18px; margin-top: 24px; }
+.drink-selector button { min-height: 44px; padding: 8px 0; border: 0; border-bottom: 1px solid transparent; background: transparent; color: var(--cream-muted); font: inherit; font-size: .76rem; cursor: pointer; transition: color 180ms, border-color 180ms; }
+.drink-selector button:hover, .drink-selector button[aria-pressed="true"] { color: var(--gold-bright); border-bottom-color: var(--gold); }
+.drink-selector button:focus-visible { outline: 2px solid var(--gold-bright); outline-offset: 4px; }
+.drink-concept { margin-top: 15px; color: var(--cream-muted); font-size: .65rem; line-height: 1.6; }
 .hero__product figcaption { display: flex; justify-content: space-between; gap: 10px; padding-top: 24px; color: #b3a28d; font-size: .61rem; letter-spacing: .08em; text-transform: uppercase; }
 .hero__bottom { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-top: 48px; padding-top: 22px; border-top: 1px solid var(--line); font-size: .55rem; color: var(--cream-muted); letter-spacing: .12em; }
 .hero__bottom a { display: inline-flex; gap: 14px; align-items: center; min-height: 44px; text-transform: uppercase; }
@@ -142,6 +150,13 @@ h1 em, h2 em { color: #c6b497; font-weight: 400; }
 .brand-story { display: grid; grid-template-columns: 1.45fr .75fr; gap: clamp(40px, 8vw, 120px); align-items: center; }
 .brand-story__image { position: relative; aspect-ratio: .79; overflow: hidden; }
 .cover-image { object-fit: cover; object-position: center var(--image-position, 50%); transition: transform 1100ms cubic-bezier(.2,.7,.2,1); }
+/* Feather each photograph, leaving captions and interface elements crisp. */
+.drink-scene__crop, .brand-story__image .cover-image, .editorial-card__image .cover-image, .ritual-step__image img, .ritual-photo img, .place-detail__image img {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 13%, #000 87%, transparent), linear-gradient(to bottom, transparent, #000 12%, #000 84%, transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 13%, #000 87%, transparent), linear-gradient(to bottom, transparent, #000 12%, #000 84%, transparent);
+  mask-composite: intersect;
+}
 .image-index { position: absolute; left: 20px; bottom: 18px; padding: 8px 11px; background: rgb(12 10 9 / 82%); color: var(--cream); font-size: .55rem; letter-spacing: .14em; text-transform: uppercase; }
 .brand-story__copy h3 { margin-bottom: 30px; font-size: clamp(2.4rem, 4vw, 4.3rem); }
 .brand-story__copy p { margin-bottom: 18px; color: var(--cream-muted); font-size: .9rem; }
@@ -156,7 +171,7 @@ h1 em, h2 em { color: #c6b497; font-weight: 400; }
 .ritual-visual { display: none; }
 .ritual-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; }
 .ritual-step__image { position: relative; aspect-ratio: 1; margin-bottom: 32px; }
-.ritual-step__image img { object-fit: contain; }
+.ritual-step__image img { object-fit: cover; }
 .ritual-step__copy { max-width: 380px; }
 .ritual-step__number { display: block; color: var(--gold); font-size: .66rem; letter-spacing: .16em; margin-bottom: 28px; }
 .ritual-step .gold-rule { margin-bottom: 26px; }
@@ -170,11 +185,10 @@ h1 em, h2 em { color: #c6b497; font-weight: 400; }
 }
 @media (min-width: 901px) and (prefers-reduced-motion: no-preference) {
   .ritual-journey[data-enhanced] { display: grid; grid-template-columns: 1.45fr .85fr; align-items: start; gap: 8%; }
-  .ritual-journey[data-enhanced] .ritual-visual { display: block; position: sticky; top: 12vh; height: min(74vh, 720px); background: #0e0b09; }
+  .ritual-journey[data-enhanced] .ritual-visual { display: block; position: sticky; top: 12vh; height: min(74vh, 720px); }
   .ritual-journey[data-enhanced] .ritual-photo { position: absolute; inset: 0; opacity: 0; transition: opacity 800ms ease; }
   .ritual-journey[data-enhanced] .ritual-photo[data-active="true"] { opacity: 1; }
-  .ritual-photo img { object-fit: contain; }
-  .ritual-visual__edge { position: absolute; inset: 0; border: 1px solid var(--line); pointer-events: none; }
+  .ritual-photo img { object-fit: cover; }
   .ritual-journey[data-enhanced] .ritual-steps { display: block; }
   .ritual-journey[data-enhanced] .ritual-step { min-height: 66vh; display: flex; align-items: center; }
   .ritual-journey[data-enhanced] .ritual-step__image { display: none; }
@@ -185,7 +199,7 @@ h1 em, h2 em { color: #c6b497; font-weight: 400; }
 .concept-note { max-width: 330px; margin-bottom: 10px; padding-left: 26px; border-left: 1px solid #9f835e; color: var(--cream-muted); font-size: .82rem; }
 .editorial-grid { display: grid; grid-template-columns: 1.22fr .78fr; gap: 90px 42px; align-items: start; }
 .editorial-card { min-width: 0; }
-.editorial-card__image { position: relative; overflow: hidden; background: #15100c; border: 1px solid var(--line); }
+.editorial-card__image { position: relative; overflow: hidden; }
 .editorial-card--city .editorial-card__image { aspect-ratio: 1.5; }
 .editorial-card--cups { margin-top: 155px; }
 .editorial-card--cups .editorial-card__image { aspect-ratio: 2/3; }
@@ -229,8 +243,8 @@ h1 em, h2 em { color: #c6b497; font-weight: 400; }
 .place-detail__copy .eyebrow { margin-bottom: 18px; }
 .place-detail__note { margin: 22px 0; color: var(--cream-muted); font: italic 1.25rem/1.5 Georgia, serif; }
 .place-detail__disclaimer { color: #b1a18c; font-size: .74rem; }
-.place-detail__image { position: relative; aspect-ratio: 1.5; background: #0b0907; }
-.place-detail__image img { object-fit: contain; }
+.place-detail__image { position: relative; aspect-ratio: 1.5; }
+.place-detail__image img { object-fit: cover; }
 .place-detail__figure figcaption { min-height: 50px; padding: 13px 0; font-size: .64rem; color: var(--cream-muted); }
 .map-source { padding-top: 28px; color: #b1a18c; font-size: .57rem; }
 

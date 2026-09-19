@@ -7,6 +7,7 @@ import { CoffeeStorm } from "@/components/CoffeeStorm";
 import { MotionDirector } from "@/components/MotionDirector";
 import { GoldWaves } from "@/components/GoldWaves";
 import { RitualJourney } from "@/components/RitualJourney";
+import { HeroDrinks } from "@/components/HeroDrinks";
 import { getVisionGeometry } from "@/lib/vision-geometry";
 import { GoldSparkle, WordmarkDust } from "@/components/GoldAtmosphere";
 
@@ -36,17 +37,7 @@ export default function Home() {
               </a>
               <Link className="launch-link" href="/konto">Zur Warteliste für 2029 <ArrowUpRight size={15} aria-hidden="true" /></Link>
             </div>
-            <figure className="hero__product">
-              <div className="hero__photograph">
-                <Image src={images.hero} alt="Schwarze LACACCINO-Espressomaschine mit goldenen Wellenlinien und glänzenden Siebträgern" fill preload sizes="(max-width: 900px) 100vw, 65vw" className="hero__image" />
-                <div className="launch-emblem" role="img" aria-label="Geplanter Markenstart 2029">
-                  <span className="launch-emblem__label" aria-hidden="true">Geplanter<br /><span>Markenstart</span></span>
-                  <span className="launch-emblem__year" aria-hidden="true">2029</span>
-                  <span className="launch-emblem__detail" aria-hidden="true">LACACCINO</span>
-                </div>
-              </div>
-              <figcaption><span>Die Kunst des Augenblicks</span><span>Designkonzept / 01</span></figcaption>
-            </figure>
+            <HeroDrinks />
           </div>
           <div className="hero__bottom"><a href="#marke"><ArrowDown size={15} aria-hidden="true" /> Weiterscrollen & entdecken</a><span>Leise im Auftritt. Bleibend im Gefühl.</span></div>
         </div>

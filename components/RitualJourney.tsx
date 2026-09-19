@@ -60,7 +60,6 @@ export function RitualJourney() {
             <span className="image-index">{ritual.label}</span>
           </div>
         ))}
-        <span className="ritual-visual__edge" aria-hidden="true" />
       </div>
       <div className="ritual-steps">
         {rituals.map((ritual, index) => (
