@@ -9,7 +9,10 @@ export function LegalFooter() {
         <Link href="/agb">AGB & Nutzungshinweise</Link>
         <Link href="/cookies">Cookies</Link>
       </nav>
-      <Link href="/mitarbeiter">Mitarbeiterportal</Link>
+      <nav aria-label="Interne Zugänge">
+        <Link href="/mitarbeiter">Mitarbeiterportal</Link>
+        <Link href="/admin/anmelden" prefetch={false}>Adminzugang</Link>
+      </nav>
       <p>Keine Analyse- oder Werbecookies.</p>
     </div>
   );
