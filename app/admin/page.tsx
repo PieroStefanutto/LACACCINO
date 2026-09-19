@@ -3,6 +3,7 @@ import { requireAdmin, formatDate, formatPoints } from "@/lib/portal/server";
 import { createSupabaseAdmin } from "@/lib/supabase/server";
 import { PortalHeader } from "@/components/PortalShell";
 import { ContactStatusForm } from "@/components/PortalForms";
+import { StaffRefresh } from "@/components/StaffForms";
 export const dynamic = "force-dynamic";
 export const metadata = {
   title: "Administration | LACACCINO",
@@ -31,7 +32,7 @@ export default async function AdminPage({
     2000,
     Math.max(0, Number.parseInt(query.page || "0", 10) || 0),
   );
-  const [customers, contacts] = await Promise.all([
+  const [customers, contacts, staffRequests] = await Promise.all([
     supabase.rpc("portal_customer_list", {
       search_term: search,
       page_offset: page * 50,
@@ -41,6 +42,7 @@ export default async function AdminPage({
       .select("id,name,email,message,status,created_at")
       .order("created_at", { ascending: false })
       .limit(30),
+    supabase.from("staff_requests").select("id", { count: "exact", head: true }).eq("status", "pending"),
   ]);
   const rows = (customers.data || []) as Customer[];
   return (
@@ -64,7 +66,9 @@ export default async function AdminPage({
         <nav className="admin-section-nav" aria-label="Administration">
           <a href="#kunden">Kunden & Punkte</a>
           <a href="#anfragen">Kontaktanfragen</a>
+          <Link href="/admin/mitarbeiter">Mitarbeiter & Anträge{staffRequests.error ? " · Status nicht verfügbar" : ` (${staffRequests.count || 0} offen)`}</Link>
         </nav>
+        <StaffRefresh />
         <section className="portal-panel" id="kunden">
           <div className="portal-section-heading">
             <div>

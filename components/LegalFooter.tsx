@@ -9,6 +9,7 @@ export function LegalFooter() {
         <Link href="/agb">AGB & Nutzungshinweise</Link>
         <Link href="/cookies">Cookies</Link>
       </nav>
+      <Link href="/mitarbeiter">Mitarbeiterportal</Link>
       <p>Keine Analyse- oder Werbecookies.</p>
     </div>
   );

@@ -1,17 +1,18 @@
 import Link from "next/link";
 import { signOut } from "@/app/community-actions";
+import { staffSignOut } from "@/app/staff-actions";
 
-export function PortalHeader({ admin = false }: { admin?: boolean }) {
+export function PortalHeader({ admin = false, employee = false }: { admin?: boolean; employee?: boolean }) {
   return (
     <header className="portal-header shell">
       <Link className="wordmark" href="/">
         LACACCINO
       </Link>
       <div className="portal-header__links">
-        <Link href={admin ? "/konto" : "/kontakt"}>
-          {admin ? "Kundenansicht" : "Hilfe & Kontakt"}
+        <Link href={employee ? "/mitarbeiter" : admin ? "/konto" : "/kontakt"}>
+          {employee ? "Mein Arbeitsbereich" : admin ? "Kundenansicht" : "Hilfe & Kontakt"}
         </Link>
-        <form action={signOut}>
+        <form action={employee ? staffSignOut : signOut}>
           <button type="submit" className="portal-logout">
             Abmelden
           </button>

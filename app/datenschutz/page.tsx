@@ -18,6 +18,13 @@ export default function PrivacyPage() {
       intro="Informationen nach Art. 13 DSGVO zur Website, zu Kontaktanfragen, zum Konto und zur Warteliste."
     >
       <LegalDraftNote />
+      <section id="mitarbeiter">
+        <h2>Mitarbeiterportal</h2>
+        <p>Für freigeschaltete Mitarbeiter verarbeiten wir Namen, E-Mail-Adresse, Zugangsstatus, Stundenlohn, regelmäßige Arbeitstage, Jahresurlaubsanspruch, Arbeitsbeginn und -ende, Pausen sowie Urlaubsanträge und Krankmeldungszeiträume. Die Angaben dienen der Organisation des Beschäftigungsverhältnisses, der Arbeitszeitübersicht und der Bearbeitung von Abwesenheiten. Die Verdienstanzeige ist eine Brutto-Schätzung und keine Lohnabrechnung.</p>
+        <p>Mitarbeiter können ihre eigenen Daten einsehen. Berechtigte Administratoren verwalten Mitarbeiterzugänge, Lohn- und Urlaubseinstellungen und bearbeiten Meldungen. Entscheidungen und Änderungen werden mit Zeitpunkt und handelndem Konto protokolliert. Bei Krankmeldungen erfassen wir keine Diagnose und keine medizinischen Dokumente. Eine Meldung im Portal ersetzt keinen gegebenenfalls erforderlichen Arbeitsunfähigkeitsnachweis.</p>
+        <p>Die Verarbeitung erfolgt, soweit erforderlich, für Zwecke des Beschäftigungsverhältnisses nach § 26 Abs. 1 BDSG in Verbindung mit Art. 6 Abs. 1 DSGVO; bei erforderlichen Gesundheitsdaten nach § 26 Abs. 3 BDSG in Verbindung mit Art. 9 Abs. 2 Buchst. b DSGVO. Speicherung und Authentifizierung erfolgen bei den nachfolgend beschriebenen Dienstleistern Supabase und Vercel. Es gibt keine öffentliche Mitarbeiterliste.</p>
+        <p>Mitarbeiterdaten werden nur so lange aufbewahrt, wie es für das Beschäftigungsverhältnis, gesetzliche Pflichten oder die Wahrung von Rechtsansprüchen erforderlich ist. Die Administration prüft Löschungswünsche und die jeweils einschlägigen Fristen. Eine Deaktivierung des Zugangs löscht keine Arbeitszeitaufzeichnungen. Auskunfts-, Berichtigungs- und Löschungswünsche kannst du über die unten genannten Kontaktwege stellen.</p>
+      </section>
       <section>
         <h2>1. Verantwortlicher und Kontakt</h2>
         <OperatorContact />

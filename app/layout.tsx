@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import "./legal.css";
 import "./portal.css";
+import "./staff.css";
 import { LegalFooter } from "@/components/LegalFooter";
 
 const manrope = localFont({

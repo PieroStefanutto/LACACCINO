@@ -69,6 +69,9 @@ export async function deleteCustomerAccount(
         ok: false,
         message: "Administrationskonten können hier nicht gelöscht werden.",
       };
+    const staff = await createSupabaseAdmin().from("staff_members").select("user_id").eq("user_id", user.id).maybeSingle();
+    if (staff.error) return { ok: false, message: "Kontostatus konnte nicht geprüft werden. Bitte später erneut versuchen." };
+    if (staff.data) return { ok: false, message: "Dein Konto ist mit einem Mitarbeiterzugang verbunden. Bitte richte deinen Löschungswunsch an die Administration, damit Arbeitszeit- und Beschäftigungsdaten geprüft werden können." };
     const { error } = await createSupabaseAdmin().auth.admin.deleteUser(
       user.id,
     );
