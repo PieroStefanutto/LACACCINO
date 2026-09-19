@@ -8,13 +8,20 @@ export function WordmarkDust() {
   useEffect(() => {
     const element = canvas.current;
     const preference = window.matchMedia(reducedMotionQuery);
-    if (!element || preference.matches) return;
+    if (!element) return;
     let disposed = false;
     let cancel: (() => void) | undefined;
-    void import("@/lib/wordmark-dust").then(({ startWordmarkDust }) => {
-      if (!disposed && !preference.matches) cancel = startWordmarkDust(element);
-    }).catch(() => { /* Plain metallic typography is the complete fallback. */ });
-    const onPreference = () => { if (preference.matches) { disposed = true; cancel?.(); } };
+    let generation = 0;
+    const onPreference = () => {
+      const current = ++generation;
+      cancel?.();
+      cancel = undefined;
+      if (preference.matches) return;
+      void import("@/lib/wordmark-dust").then(({ startWordmarkDust }) => {
+        if (!disposed && current === generation && !preference.matches) cancel = startWordmarkDust(element);
+      }).catch(() => { /* Plain metallic typography is the complete fallback. */ });
+    };
+    onPreference();
     preference.addEventListener("change", onPreference);
     return () => { disposed = true; cancel?.(); preference.removeEventListener("change", onPreference); };
   }, []);

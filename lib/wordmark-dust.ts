@@ -12,13 +12,22 @@ export function startWordmarkDust(canvas: HTMLCanvasElement) {
   let lastFrame = 0;
   let phase = 0;
   let disposed = false;
-  const mobile = window.matchMedia("(max-width: 760px)").matches;
+  let mobile = window.matchMedia("(max-width: 760px)").matches;
+  // The larger highlight background travels left to right, returning outside
+  // the letters between loops. The underlying metallic fill stays stationary.
+  const shine = label.animate?.([
+    { backgroundPosition: "120% 0%, 0% 0%" },
+    { backgroundPosition: "-20% 0%, 0% 0%" },
+  ], { duration: 6200, iterations: Infinity, easing: "linear" });
+  if (shine) { label.dataset.shimmer = "true"; shine.pause(); }
   const sample = () => {
+    if (disposed) return;
+    mobile = window.matchMedia("(max-width: 760px)").matches;
     const rect = canvas.getBoundingClientRect();
     const type = getComputedStyle(label);
     width = rect.width;
     height = rect.height;
-    const ratio = Math.min(window.devicePixelRatio || 1, mobile ? 1 : 1.5);
+    const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
     canvas.width = Math.round(width * ratio);
     canvas.height = Math.round(height * ratio);
     context.setTransform(ratio, 0, 0, ratio, 0, 0);
@@ -41,14 +50,14 @@ export function startWordmarkDust(canvas: HTMLCanvasElement) {
     }
     const pixels = ink.getImageData(0, 0, mask.width, mask.height).data;
     const edges: { x: number; y: number }[] = [];
-    for (let y = 0; y < mask.height; y += 3) {
-      for (let x = 0; x < mask.width; x += 3) {
+    for (let y = 0; y < mask.height; y += 2) {
+      for (let x = 0; x < mask.width; x += 2) {
         if (pixels[(y * mask.width + x) * 4 + 3] > 30) edges.push({ x, y });
       }
     }
-    particles = Array.from({ length: Math.min(edges.length, mobile ? 48 : 110) }, () => {
+    particles = Array.from({ length: Math.min(edges.length, mobile ? 160 : 440) }, () => {
       const edge = edges[Math.floor(Math.random() * edges.length)];
-      return { ...edge, angle: Math.random() * Math.PI * 2, size: .4 + Math.random() * .8 };
+      return { ...edge, angle: Math.random() * Math.PI * 2, size: .2 + Math.random() * .45 };
     });
   };
   const draw = (now: number) => {
@@ -60,11 +69,11 @@ export function startWordmarkDust(canvas: HTMLCanvasElement) {
     lastFrame = now;
     context.clearRect(0, 0, width, height);
     for (const particle of particles) {
-      const angle = particle.angle + phase * .45;
-      const orbit = 2.5 + Math.sin(phase * .23 + particle.angle) * 2;
-      const x = particle.x + Math.cos(angle) * orbit;
+      const angle = particle.angle + phase * .7;
+      const orbit = 4.5 + Math.sin(phase * .35 + particle.angle) * 3;
+      const x = particle.x + Math.cos(angle) * orbit + Math.sin(phase * .55 + particle.angle) * 4;
       const y = particle.y + Math.sin(angle) * orbit;
-      context.globalAlpha = .2 + (.5 + Math.sin(angle) * .5) * .45;
+      context.globalAlpha = .25 + (.5 + Math.sin(angle) * .5) * .45;
       context.fillStyle = "#dbc19a";
       context.beginPath();
       context.arc(x, y, particle.size, 0, Math.PI * 2);
@@ -75,7 +84,10 @@ export function startWordmarkDust(canvas: HTMLCanvasElement) {
     cancelAnimationFrame(frame);
     frame = 0;
     lastFrame = 0;
-    if (!disposed && visible && !document.hidden && !preference.matches) frame = requestAnimationFrame(draw);
+    if (!disposed && visible && !document.hidden && !preference.matches) {
+      frame = requestAnimationFrame(draw);
+      shine?.play();
+    } else shine?.pause();
   };
   const observer = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; sync(); });
   const resize = new ResizeObserver(() => {
@@ -84,6 +96,8 @@ export function startWordmarkDust(canvas: HTMLCanvasElement) {
   const dispose = () => {
     disposed = true;
     cancelAnimationFrame(frame);
+    shine?.cancel();
+    delete label.dataset.shimmer;
     observer.disconnect();
     resize.disconnect();
     context.clearRect(0, 0, width, height);
@@ -93,5 +107,9 @@ export function startWordmarkDust(canvas: HTMLCanvasElement) {
   observer.observe(canvas);
   resize.observe(canvas);
   document.addEventListener("visibilitychange", sync);
+  // Match the actual loaded typeface rather than keeping a fallback-font mask.
+  void document.fonts?.ready.then(() => {
+    if (!disposed) { try { sample(); } catch { dispose(); } }
+  });
   return dispose;
 }
