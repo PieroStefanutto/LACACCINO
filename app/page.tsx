@@ -24,7 +24,7 @@ export default function Home() {
       <section className="hero" id="start" aria-labelledby="hero-title">
         <div className="hero__glow" data-ambient aria-hidden="true" />
         <div className="hero__stage shell">
-          <div className="hero__overline"><span>Die neue Kultur des Coffee to go</span><span>Geplanter Markenstart 2029</span></div>
+          <p className="hero__overline">Die neue Kultur des Coffee to go</p>
           <div className="hero__wordmark-wrap"><p className="hero__wordmark">LACACCINO</p><WordmarkDust /></div>
           <div className="hero__composition">
             <div className="hero__content">
@@ -34,11 +34,16 @@ export default function Home() {
               <a id="discover" className="button button--light" href="#marke">
                 <span>Die Welt von LACACCINO entdecken</span> <ArrowDownRight aria-hidden="true" size={18} />
               </a>
-              <p className="launch-note"><span>2029</span> Geplanter Markenstart</p>
+              <Link className="launch-link" href="/konto">Zur Warteliste für 2029 <ArrowUpRight size={15} aria-hidden="true" /></Link>
             </div>
             <figure className="hero__product">
               <div className="hero__photograph">
                 <Image src={images.hero} alt="Schwarze LACACCINO-Espressomaschine mit goldenen Wellenlinien und glänzenden Siebträgern" fill preload sizes="(max-width: 900px) 100vw, 65vw" className="hero__image" />
+                <div className="launch-emblem" role="img" aria-label="Geplanter Markenstart 2029">
+                  <span className="launch-emblem__label" aria-hidden="true">Geplanter<br /><span>Markenstart</span></span>
+                  <span className="launch-emblem__year" aria-hidden="true">2029</span>
+                  <span className="launch-emblem__detail" aria-hidden="true">LACACCINO</span>
+                </div>
               </div>
               <figcaption><span>Die Kunst des Augenblicks</span><span>Designkonzept / 01</span></figcaption>
             </figure>

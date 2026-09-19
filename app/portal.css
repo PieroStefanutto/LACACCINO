@@ -293,7 +293,7 @@
   margin-block: 18px 24px;
 }
 .points-total span {
-  font-family: Arial, sans-serif;
+  font-family: var(--font-manrope), Arial, sans-serif;
   font-size: 0.8rem;
   letter-spacing: 0.02em;
   margin-left: 15px;

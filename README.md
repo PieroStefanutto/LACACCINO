@@ -44,6 +44,8 @@ Bei laufender Website prüft `npm.cmd run check:preview` in einem zweiten Termin
 
 ## Bilder und Karte
 
+Manrope ersetzt die bisherige Arial-Typografie für Fließtexte, Navigation, Buttons und kleine Beschriftungen. Die Schrift wird mit `next/font/local` selbst gehostet; Lizenz: [Manrope OFL](public/fonts/Manrope-OFL.txt). Die Serifenschrift der großen Überschriften bleibt erhalten. Ein skalierbares typografisches Emblem hebt den geplanten Markenstart 2029 im Startmotiv hervor, auch auf kleinen Bildschirmen.
+
 Die 13 Originalbilder in `public/images` bleiben unverändert. `next/image` liefert passende Größen und moderne Bildformate aus. Bildflächen haben feste Seitenverhältnisse. Die Karte verwendet lokal installierte Natural-Earth-Geometrie aus `world-atlas` (Public Domain); `d3-geo` und `topojson-client` berechnen die SVG-Pfade auf dem Server. Zur Laufzeit wird kein Kartendienst kontaktiert.
 
 Es gibt keine Tracker, extern geladenen Schriften, Audio-Autoplay, Preise oder Bestellfunktionen. Offene Kontakt- und Rechtstextangaben sowie die spätere Filmproduktion stehen in `TODO.md`.

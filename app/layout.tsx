@@ -1,8 +1,17 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
 import "./legal.css";
 import "./portal.css";
 import { LegalFooter } from "@/components/LegalFooter";
+
+const manrope = localFont({
+  src: "../public/fonts/Manrope-Variable.ttf",
+  variable: "--font-manrope",
+  display: "swap",
+  weight: "200 800",
+  fallback: ["Arial", "Helvetica", "sans-serif"],
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.SITE_URL || "https://lacaccino.vercel.app"),
@@ -38,7 +47,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="de">
+    <html lang="de" className={manrope.variable}>
       <body>
         {children}
         <LegalFooter />
