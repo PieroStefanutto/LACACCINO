@@ -1,5 +1,7 @@
 # Club: Architektur, Betrieb und offene Entscheidungen
 
+Aktualisierung vom 20.09.2026: Der Betreiber hat nach der Testabnahme die Produktionsfreischaltung beauftragt. Die Produktionsmigration ist durchgeführt; Einrichtung und Prüfstand siehe [CLUB-PRODUKTION.md](CLUB-PRODUKTION.md). Die unten beschriebene frühere Codesperre wurde durch einen expliziten Produktionsschalter mit Prüfung der Datenbank ersetzt.
+
 ## Umgebungen
 
 - `off` ist Standard. Markenwebsite, `/konto`, `/mitarbeiter` und `/admin` bleiben bestehen.

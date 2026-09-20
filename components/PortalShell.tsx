@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { signOut } from "@/app/community-actions";
 import { staffSignOut } from "@/app/staff-actions";
+import { clubMode } from "@/lib/club/config";
 
 export function PortalHeader({ admin = false, employee = false }: { admin?: boolean; employee?: boolean }) {
   return (
@@ -9,6 +10,11 @@ export function PortalHeader({ admin = false, employee = false }: { admin?: bool
         LACACCINO
       </Link>
       <div className="portal-header__links">
+        {clubMode() !== "off" && (
+          <Link href={admin ? "/club/admin" : employee ? "/club/team" : "/club"}>
+            {admin ? "Club-Administration" : employee ? "Club-Service" : "LACACCINO Club"}
+          </Link>
+        )}
         <Link href={employee ? "/mitarbeiter" : admin ? "/konto" : "/kontakt"}>
           {employee ? "Mein Arbeitsbereich" : admin ? "Kundenansicht" : "Hilfe & Kontakt"}
         </Link>
@@ -28,6 +34,7 @@ export function PortalNavigation({
 }) {
   return (
     <nav className="portal-nav" aria-label="Kundenportal">
+      {clubMode() !== "off" && <Link href="/club/karte">Meine Mitgliedskarte</Link>}
       <Link
         href="/konto"
         aria-current={current === "uebersicht" ? "page" : undefined}

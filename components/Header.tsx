@@ -11,7 +11,10 @@ const links = [
   { href: "/konto", label: "Mein Konto" },
 ];
 
-export function Header() {
+export function Header({ clubEnabled = false }: { clubEnabled?: boolean }) {
+  const navigation = clubEnabled
+    ? links.map((link) => link.href === "/konto" ? { href: "/club", label: "LACACCINO Club" } : link)
+    : links;
   const disclosure = useRef<HTMLDetailsElement>(null);
   useEffect(() => {
     const desktop = window.matchMedia("(min-width: 901px)");
@@ -34,7 +37,7 @@ export function Header() {
           LACACCINO
         </a>
         <nav className="desktop-nav" aria-label="Hauptnavigation">
-          {links.map((link) => <a key={link.href} href={link.href}>{link.label}</a>)}
+          {navigation.map((link) => <a key={link.href} href={link.href}>{link.label}</a>)}
         </nav>
         <details className="mobile-menu" ref={disclosure}>
           <summary className="menu-button">
@@ -42,7 +45,7 @@ export function Header() {
           </summary>
           <nav className="mobile-nav" aria-label="Mobile Navigation">
             <p>Die Welt von LACACCINO</p>
-            {links.map((link, index) => (
+            {navigation.map((link, index) => (
               <a key={link.href} href={link.href} onClick={() => { if (disclosure.current) disclosure.current.open = false; }}>
                 <span>0{index + 1}</span>{link.label}
               </a>

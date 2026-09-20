@@ -48,6 +48,11 @@ export default async function Login({
           <h2>
             {mode === "demo" ? "Den Club ausprobieren" : "Willkommen im Club"}
           </h2>
+          {mode === "supabase" && process.env.APP_ENV === "production" && (
+            <p className="club-small">
+              Dein bestehendes LACACCINO-Konto gilt auch im Club. Für den Adminzugang mit Benutzername nutze die <Link href="/admin/anmelden">Admin-Anmeldung</Link>.
+            </p>
+          )}
           {mode === "demo" ? (
             <>
               <p className="club-notice">

@@ -12,15 +12,17 @@ import { getVisionGeometry } from "@/lib/vision-geometry";
 import { GoldSparkle, WordmarkDust } from "@/components/GoldAtmosphere";
 
 import { images } from "@/lib/images";
+import { clubMode } from "@/lib/club/config";
 
 export default function Home() {
+  const clubEnabled = clubMode() !== "off";
   return (
     <>
       <a className="skip-link" href="#main-content">Zum Inhalt springen</a>
       <CoffeeStorm />
       <MotionDirector />
       <GoldSparkle />
-      <Header />
+      <Header clubEnabled={clubEnabled} />
       <main id="main-content">
       <section className="hero" id="start" aria-labelledby="hero-title">
         <div className="hero__glow" data-ambient aria-hidden="true" />
@@ -229,6 +231,7 @@ export default function Home() {
             <a href="#vision">Unsere Vision</a>
             <Link href="/kontakt">Kontakt</Link>
             <Link href="/konto">Mein Konto</Link>
+            {clubEnabled && <Link href="/club">LACACCINO Club</Link>}
           </nav>
           <p>Markenstudie · Designkonzepte</p>
         </div>

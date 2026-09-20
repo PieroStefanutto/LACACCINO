@@ -1,5 +1,7 @@
 # LACACCINO
 
+Aktuelle Club-Freischaltung, Zugänge und verbleibende Einschränkungen: [Produktionsstand](docs/CLUB-PRODUKTION.md). Die öffentliche Website und die bisherigen Kunden-/Personalzugänge bleiben erhalten.
+
 ## Neuer LACACCINO Club – lokale Ausbaustufe
 
 Neu: Eine separate Supabase-Vorschau wird auf dem Zweig `club-test` eingerichtet. Datenbank, echte Anmeldung und MFA sind unabhängig vom Echtbetrieb geprüft; Details und Zugang: [Club-Testprojekt](docs/CLUB-TESTPROJEKT.md).
