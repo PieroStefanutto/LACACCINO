@@ -200,6 +200,7 @@ export default async function ClubPage({
   const wrapper = (children: React.ReactNode) => (
     <ClubShell
       demo={demo}
+      preview={!demo && process.env.APP_ENV === "preview"}
       role={data.role}
       unread={data.notifications.filter((n) => !n.read_at).length}
     >

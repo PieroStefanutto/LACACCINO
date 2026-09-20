@@ -52,11 +52,13 @@ export function ClubMark() {
 export function ClubShell({
   children,
   demo,
+  preview = false,
   role = "customer",
   unread = 0,
 }: {
   children: ReactNode;
   demo: boolean;
+  preview?: boolean;
   role?: string;
   unread?: number;
 }) {
@@ -100,6 +102,13 @@ export function ClubShell({
         <div className="club-demo-banner">
           <span>LOKALE DEMO · Ausschließlich fiktive Daten. Kein Verkauf.</span>
           <Link href="/club/anmelden">Testperson wechseln</Link>
+        </div>
+      )}
+      {preview && !demo && (
+        <div className="club-demo-banner">
+          <span>
+            TESTUMGEBUNG · Separate Testkonten. Keine echten Prämien oder Käufe.
+          </span>
         </div>
       )}
       <header className="club-header">

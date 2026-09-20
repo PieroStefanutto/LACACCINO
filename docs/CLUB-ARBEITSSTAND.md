@@ -1,10 +1,12 @@
 # LACACCINO Club – Arbeitsstand
 
-Stand: 20. September 2026. Lokaler Entwicklungszweig `feature/lacaccino-club-local`.
+Stand: 20. September 2026. Aktueller Vorschauzweig `club-test`; lokale Grundlage `feature/lacaccino-club-local`.
+
+**Fortschritt nach der lokalen Ausbaustufe:** Das vom Betreiber bereitgestellte Supabase-Testprojekt `cilstsrnidvmtcugjyns` ist eingerichtet. Alle neun Migrationen und 34 reale API-/Auth-/MFA-/Parallelitätstests sind erfolgreich. Details, Grenzen und Zugang stehen in [CLUB-TESTPROJEKT.md](CLUB-TESTPROJEKT.md). Die folgende Bestandsmatrix beschreibt noch die ursprüngliche lokale Ausbaustufe; der Testprojekt-Nachweis ergänzt sie. Der Club bleibt im bisherigen Echtbetrieb gesperrt.
 
 ## Auftrag und Grenzen
 
-Die öffentliche Markenwebsite und das bestehende Kunden-/Mitarbeiterportal bleiben erhalten. Zunächst waren Veröffentlichung und Push ausgeschlossen. Nach der lokalen Abnahme hat der Betreiber am 20.09.2026 die Veröffentlichung des geprüften Codes beauftragt. Diese Freigabe umfasst GitHub und beide bestehenden Vercel-Projekte. Der neue Club bleibt öffentlich deaktiviert; keine produktive Migration. Es gibt weiterhin kein separates Supabase-Testprojekt; Club-Tests laufen ausschließlich lokal.
+Die öffentliche Markenwebsite und das bestehende Kunden-/Mitarbeiterportal bleiben erhalten. Nach der lokalen Abnahme wurde der geprüfte Code auf GitHub main und beiden Produktionsprojekten veröffentlicht, während der Club dort deaktiviert blieb. Anschließend hat der Betreiber das separate Testprojekt bereitgestellt; Änderungen und Tests dort sind autorisiert. Keine produktive Migration und keine Übernahme realer Kundendaten in die Vorschau.
 
 ## Gesicherter Ausgangspunkt
 
@@ -72,9 +74,9 @@ Ein lokal bestandener SQL-Test ersetzt weder Supabase-Auth-Integrationstests noc
 
 ## Fortsetzung
 
-1. Separates Supabase-Testprojekt bereitstellen und dessen Verwendung bestätigen. Ausschließlich dort Migrationen anwenden; Demo-Seed niemals übertragen.
+1. Erledigt: separates Supabase-Testprojekt bereitgestellt, alle Migrationen dort angewendet. Kein Demo-Seed übertragen.
 2. Auth/Recovery/MFA mit echten Testkonten und Mailanbieter Ende zu Ende prüfen, Rollen des bestehenden HR-/Adminbereichs vereinheitlichen.
-3. SQL unter echtem PostgreSQL mit parallelen Verbindungen prüfen. Schema, Indexierung und seitenweise Adminlisten für größere Mengen abnehmen.
+3. Erledigt: konkurrierende Buchungen, Prämieneinlösungen und Eventanmeldungen gegen echtes PostgreSQL geprüft. Umfangreichere Lasttests, Indexierung und seitenweise Adminlisten für größere Mengen bleiben offen.
 4. Regeln, Standorte, Sortiment und Betreiber-/Rechtstexte freigeben; Löschabschluss und Aufbewahrung umsetzen.
 5. Wallet-Ausgabe/Registrierungsdienste und Worker fertigstellen; offizielle Tests aus `CLUB-WALLETS.md` durchführen.
 6. Verkauf erst nach ausdrücklich freigegebenen Regeln im Testmodus implementieren. Danach gesonderte Freigabe für Echtbetrieb und Veröffentlichung.

@@ -38,6 +38,13 @@ export default async function Login({
           <p className="club-small">Geplanter Markenstart 2029</p>
         </div>
         <section className="club-panel">
+          {mode === "supabase" && process.env.APP_ENV === "preview" && (
+            <p className="club-notice">
+              Club-Testumgebung mit separaten Testkonten. Dein Konto der
+              öffentlichen Website gilt hier nicht. Keine echten Prämien oder
+              Käufe.
+            </p>
+          )}
           <h2>
             {mode === "demo" ? "Den Club ausprobieren" : "Willkommen im Club"}
           </h2>
