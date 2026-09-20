@@ -27,5 +27,6 @@ export function validateContact(form: FormData) {
 }
 
 export function callbackDestination(value: string | null) {
-  return value === "/konto/passwort" ? value : "/konto";
+  const allowed = ["/konto/passwort", "/club", "/club/karte", "/club/vorteile", "/club/profil", "/club/getraenke", "/club/standorte", "/club/neuigkeiten", "/club/nachrichten", "/club/team", "/club/admin"];
+  return value && allowed.includes(value) ? value : "/konto";
 }

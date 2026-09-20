@@ -10,14 +10,14 @@ export async function GET(request: NextRequest) {
     request.nextUrl.searchParams.get("next"),
   );
   const origin = siteOrigin();
-  if (code || (tokenHash && type === "email")) {
+  if (code || (tokenHash && (type === "email" || type === "recovery"))) {
     try {
       const supabase = await createSupabaseServer();
       const { error } = code
         ? await supabase.auth.exchangeCodeForSession(code)
         : await supabase.auth.verifyOtp({
             token_hash: tokenHash!,
-            type: "email",
+            type: type === "recovery" ? "recovery" : "email",
           });
       if (!error)
         return NextResponse.redirect(

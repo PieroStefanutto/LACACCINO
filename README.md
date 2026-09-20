@@ -1,5 +1,40 @@
 # LACACCINO
 
+## Neuer LACACCINO Club – lokale Ausbaustufe
+
+Der Club wird auf dem lokalen Zweig `feature/lacaccino-club-local` entwickelt. **Nicht gepusht, nicht veröffentlicht, keine produktive Migration.** Die bestehende Markenwebsite bleibt erhalten.
+
+Zum sicheren Ausprobieren (Node.js 24):
+
+~~~powershell
+npm.cmd ci
+npm.cmd run dev:club
+~~~
+
+Dann [lokale Club-Vorschau öffnen](http://127.0.0.1:3120/club/anmelden). Testperson auswählen: **Mila/Jonas** für Kunden, **Alex** für Mitarbeiter, **Kim** für Standortleitung, **Robin** für Administration. Dafür sind keine Passwörter erforderlich; es handelt sich ausdrücklich um eine isolierte Demo, nicht um echte Authentifizierung.
+
+Karte, Favoriten, Profil, Punktebuchungen, Prämienreservierung/-ausgabe, Eventplätze und Verwaltung arbeiten mit einer persistenten lokalen PostgreSQL-Testdatenbank und denselben SQL-Funktionen, die für Supabase vorbereitet sind. Die Testdaten sind fiktiv. Der sichere Startbefehl verändert keine vorhandene `.env.local` und verwendet keine Supabase-Zugangsdaten.
+
+~~~powershell
+npm.cmd run lint
+npm.cmd run typecheck
+npm.cmd test
+npm.cmd run build
+# Bei laufender isolierter Demo:
+node scripts/check-club-http.mjs
+~~~
+
+Browserprüfung: `scripts/check-club-browser.mjs` mit `AGENT_BROWSER_BIN` auf die vorhandene agent-browser-Programmdatei. Screenshots und Prüfberichte liegen lokal unter `artifacts/club`.
+
+- [Arbeitsstand, Funktionsstatus und nächste Schritte](docs/CLUB-ARBEITSSTAND.md)
+- [Architektur, Sicherheit, Sicherung und offene Entscheidungen](docs/CLUB-BETRIEB.md)
+- [Apple/Google Wallet: Einrichtung und noch offene Schritte](docs/CLUB-WALLETS.md)
+- [.env.example mit Platzhaltern](.env.example)
+
+Echte Supabase-/E-Mail-/MFA-Tests benötigen ein getrenntes Testprojekt und Mail-Einrichtung. Wallet-Signierung und Datenmodell sind vorbereitet; Ausgabe-/Update-Dienste und offizielle Gerätetests fehlen. Verkauf bleibt deaktiviert. Diese Ausbaustufe ist keine Aussage über Produktionsreife oder rechtliche Vollständigkeit.
+
+**Achtung bei den älteren Integrationsskripten:** Sie können das Projekt aus `.env.local` verändern. Für diese Etappe nur die neuen Club-Prüfskripte beziehungsweise rein lokale Unit-Tests verwenden.
+
 ## Website und Datenbank
 
 Die Website ist über GitHub `main` mit den Vercel-Projekten `lacaccino` und `lacaccino-mfw9` verbunden. Hauptadresse: https://lacaccino.vercel.app.
@@ -55,11 +90,11 @@ Es gibt keine Tracker, extern geladenen Schriften, Audio-Autoplay, Preise oder B
 
 `npm.cmd test` prüft den Canvas-Renderer isoliert: Dauer und Auflösung, Abbruch, Ende bei inaktivem Tab, Renderingfehler und mobile Ressourcenbegrenzung. Diese Tests sind keine Browserprüfung.
 
-Für den manuellen Abnahmelauf: Desktop und Smartphone, Intro überspringen, erneut laden, reduzierte Bewegung, Tastaturnavigation, Menü und alle sechs Kartenorte durchgehen. Für die Prüfung ohne JavaScript die Website mit deaktiviertem JavaScript neu laden: alle Hauptinhalte sollen sichtbar bleiben. In der Arbeitsumgebung war kein Browser verbunden; Screenshots und diese Bedienungsprüfungen konnten daher nicht automatisiert durchgeführt werden.
+Für den manuellen Abnahmelauf der Markenwebsite: Desktop und Smartphone, Intro überspringen, erneut laden, reduzierte Bewegung, Tastaturnavigation, Menü und alle sechs Kartenorte durchgehen. Für die Prüfung ohne JavaScript die Website mit deaktiviertem JavaScript neu laden. Die aktuelle Club-Ausbaustufe wurde zusätzlich automatisiert im Browser geprüft; Umfang und Grenzen stehen im Club-Arbeitsstand.
 
 ## Rechtliche Informationen
 
-Impressum, Datenschutz, AGB/Nutzungshinweise und Cookie-Information sind über den globalen Footer erreichbar. Die Anbieterangaben stammen aus dem Dächle-Impressum. Fehlende Angaben und betriebliche Prüfpunkte sind in [docs/legal-review.md](docs/legal-review.md) dokumentiert. Der Inhaber hat die Veröffentlichung beauftragt; offene Angaben sind weiterhin zu ergänzen. Das ursprüngliche dunkle Design wurde auf Wunsch wiederhergestellt.
+Impressum, Datenschutz, AGB/Nutzungshinweise und Cookie-Information sind über den globalen Footer erreichbar. Die Anbieterangaben stammen aus dem Dächle-Impressum. Fehlende Angaben und betriebliche Prüfpunkte sind in [docs/legal-review.md](docs/legal-review.md) dokumentiert. Die damalige Website-Veröffentlichung ist bereits erfolgt; für den neuen Club gilt ausdrücklich keine Veröffentlichungsfreigabe. Offene Angaben bleiben zu ergänzen. Das ursprüngliche dunkle Design bleibt erhalten.
 
 ## Kundenportal und Administration
 

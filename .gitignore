@@ -10,6 +10,7 @@
 
 # local environment and secrets
 .env*
+!.env.example
 .npmrc
 .netrc
 .git-credentials
