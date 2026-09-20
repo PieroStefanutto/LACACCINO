@@ -2,7 +2,7 @@
 
 Stand: 20. September 2026. Aktueller Vorschauzweig `club-test`; lokale Grundlage `feature/lacaccino-club-local`.
 
-**Fortschritt nach der lokalen Ausbaustufe:** Das vom Betreiber bereitgestellte Supabase-Testprojekt `cilstsrnidvmtcugjyns` ist eingerichtet. Alle neun Migrationen und 34 reale API-/Auth-/MFA-/Parallelitätstests sind erfolgreich. Details, Grenzen und Zugang stehen in [CLUB-TESTPROJEKT.md](CLUB-TESTPROJEKT.md). Die folgende Bestandsmatrix beschreibt noch die ursprüngliche lokale Ausbaustufe; der Testprojekt-Nachweis ergänzt sie. Der Club bleibt im bisherigen Echtbetrieb gesperrt.
+**Fortschritt nach der lokalen Ausbaustufe:** Das vom Betreiber bereitgestellte Supabase-Testprojekt `cilstsrnidvmtcugjyns` ist eingerichtet. Alle zehn Migrationen, 34 reale API-/Auth-/MFA-/Parallelitätstests und 32 lokale Tests sind erfolgreich. Die persönliche Karte wurde in der veröffentlichten Vercel-Testvorschau auf Desktop und Smartphone geprüft. Details, Grenzen und Zugang stehen in [CLUB-TESTPROJEKT.md](CLUB-TESTPROJEKT.md). Die folgende Bestandsmatrix beschreibt noch die ursprüngliche lokale Ausbaustufe; der Testprojekt-Nachweis ergänzt sie. Der Club bleibt im bisherigen Echtbetrieb gesperrt.
 
 ## Auftrag und Grenzen
 

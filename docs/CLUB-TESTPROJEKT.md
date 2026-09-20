@@ -4,7 +4,7 @@ Stand: 20.09.2026. Der Betreiber hat das neu angelegte Projekt ausdrücklich fü
 
 - Supabase: `lacaccino-club-test`, Referenz `cilstsrnidvmtcugjyns`, Region `eu-west-1`.
 - Ausgangspunkt: 0 Tabellen in `public`, 0 Auth-Konten.
-- Alle neun versionierten Migrationen wurden mit expliziter Testprojekt-Referenz angewendet. Kein Demo-Bootstrap, kein lokaler Demo-Seed übertragen.
+- Alle zehn versionierten Migrationen wurden mit expliziter Testprojekt-Referenz angewendet. Kein Demo-Bootstrap, kein lokaler Demo-Seed übertragen.
 - 36 Anwendungstabellen mit aktiviertem RLS. Rechte kommen ausdrücklich aus den Migrationen.
 - Das bestehende Produktionsprojekt `midxwtzhytzvbmidpvsl`, dessen lokale Verknüpfung und `.env.local` bleiben unverändert.
 - Vercel-Projekt `lacaccino`: acht Variablen ausschließlich für **Preview und Git-Zweig `club-test`**. Produktionsvariablen bleiben unverändert.
@@ -15,6 +15,8 @@ Stand: 20.09.2026. Der Betreiber hat das neu angelegte Projekt ausdrücklich fü
 Die Vorschau verwendet echte Supabase-Sitzungen und serverseitig bestätigte Nutzer. Keine frei wählbaren Testrollen. Sie zeigt einen dauerhaften Hinweis auf die getrennte Testumgebung.
 
 Zwei fiktive Konten für die manuelle Abnahme wurden angelegt: Kunde und Administrator. Ihre zufälligen Passwörter liegen nur lokal in `artifacts/club-test-zugang.txt` und `artifacts/club-staging/preview-accounts.json`. Beide Pfade sind von Git und Vercel-Uploads ausgeschlossen. Das Admin-Konto benötigt zusätzlich TOTP. Es hat keine Rechte im Produktionsprojekt.
+
+Die Vorschau behält den Vercel-Zugriffsschutz. Falls Vercel zuerst eine Anmeldung verlangt, das eigene Vercel-Konto verwenden; anschließend mit dem separaten Club-Testkonto anmelden. Für automatisierte Prüfungen wird nur der vorhandene, auf die Vorschau-Adresse beschränkte Automation-Zugang verwendet. Sein Schlüssel wird weder dokumentiert noch weitergegeben.
 
 Registrierung, E-Mail-Links und Passwort-E-Mails bleiben mit `AUTH_EMAIL_ENABLED=false` gesperrt. Die Auth-Site-URL und zulässige Callback-URLs verweisen auf die Vorschau; Mindestpasswortlänge ist 12. Der spätere SMTP-Versand wurde nicht eingerichtet.
 
@@ -33,6 +35,25 @@ Bestätigung und Recovery wurden mit **providerseitig erzeugten Testlinks ohne E
 Die parallelen Prüfungen verwenden echte gleichzeitige PostgREST-Anfragen gegen PostgreSQL. Nur eindeutig zu diesem Testlauf gehörende fiktive Datensätze werden angelegt und anschließend entfernt. Das lokale Demo-Seed wird nicht verwendet. Bericht: `artifacts/club-staging/supabase-results.json`.
 
 `scripts/provision-club-preview.mjs` stellt die beiden dauerhaften manuellen Testkonten bereit und erhält bereits gespeicherte Passwörter. Automatische Prüfungen sind bewusst nicht Teil von `npm test`, weil sie das externe Testprojekt verändern.
+
+## Online-Abnahme im Browser
+
+- Echte Kundenanmeldung auf dem Vercel-Vorschauzweig und Rückkehr zur angeforderten Kartenseite.
+- Mitgliedschaft über die Oberfläche erstellt; persönliche Karte mit QR-Code aus der Testdatenbank sichtbar. Keine erfundenen Punkte, Prämien oder Standorte im leeren Testprojekt.
+- Profil geändert, Erfolgsmeldung geprüft, Seite neu geladen und gespeicherten Wert bestätigt; ursprünglichen Namen anschließend wiederhergestellt.
+- Abmelden und anschließender Direktaufruf der Karte führen zur Anmeldung mit Rücksprungziel.
+- Erneute Anmeldung öffnet dieselbe Mitgliedskarte mit derselben Mitgliedsnummer und genau einem QR-Code. Tastaturnavigation erreicht den Sprunglink zum Inhalt. Keine JavaScript-Fehler im geprüften Browserlauf.
+- Desktop: 1440 × 1000. Smartphone: 390 × 844, kein horizontaler Überlauf; kompletter QR-Code oberhalb der festen Navigation. Vier mobile Ziele mit je 93 × 54 Pixel Bedienfläche.
+- Wallets zeigen „Noch nicht eingerichtet“ ohne scheinbar aktive Hinzufügen-Schaltflächen. Marketing-Einwilligung bleibt freiwillig und ausgeschaltet.
+- Screenshots: `artifacts/club-staging/card-desktop.png`, `artifacts/club-staging/card-mobile.png`.
+
+Build einschließlich TypeScript und ESLint erfolgreich. 32 lokale Tests auch nach der zehnten Migration erfolgreich. Die reale Kamera, Wallet-Geräte und E-Mail-Zustellung wurden nicht getestet.
+
+## Datenbank-Sicherheitsprüfung
+
+Die automatische RLS-Einrichtung des neuen Supabase-Projekts brachte eine über die API ausführbare Event-Trigger-Funktion mit. Migration `20260920140000_club_auto_rls_privileges.sql` entfernt diese unnötigen Aufrufrechte; der RLS-Trigger bleibt erhalten. Die Migration wurde ausschließlich auf das Testprojekt angewendet und ist ohne diese Funktion ebenfalls ausführbar.
+
+Security Advisor nach der Korrektur: keine ERROR-Befunde; 35 Hinweise auf absichtlich für angemeldete Nutzer aufrufbare SECURITY-DEFINER-Funktionen und ein Hinweis auf nicht aktivierten Schutz vor kompromittierten Passwörtern. Die Club-RPCs prüfen Identität, Rolle, MFA und Standort; diese Grenzen wurden in den Integrationstests geprüft. Die Hinweise sind dokumentiert und keine Aussage über vollständige Produktionssicherheit. Passwortschutz und Tarifvoraussetzungen vor Echtbetrieb prüfen. Bericht: `artifacts/club-staging/security-advisors.json`.
 
 ## Noch offen vor dem Echtbetrieb
 

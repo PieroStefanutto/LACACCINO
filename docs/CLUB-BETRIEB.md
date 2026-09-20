@@ -11,7 +11,7 @@
 
 ## Datenbank und Anmeldung
 
-Die fünf bestehenden Migrationen bleiben unverändert. Vier zusätzliche Migrationen erweitern Mitgliedschaften, Sortiment, Treueprogramm, Inhalte, Rollen und Wallet-Vorbereitung. **Keine neue Migration wurde auf Supabase angewendet.**
+Die fünf bestehenden Migrationen bleiben unverändert. Vier zusätzliche Migrationen erweitern Mitgliedschaften, Sortiment, Treueprogramm, Inhalte, Rollen und Wallet-Vorbereitung. Eine weitere Migration begrenzt die API-Rechte der automatischen RLS-Triggerfunktion. **Alle zehn Migrationen wurden ausschließlich auf das autorisierte Supabase-Testprojekt angewendet. Die Produktionsdatenbank wurde nicht migriert.** Einrichtung, Online-Zugang und Abnahme: [CLUB-TESTPROJEKT.md](CLUB-TESTPROJEKT.md).
 
 Die lokale Datenbank führt alle Migrationen aus. `supabase/demo/bootstrap.sql` simuliert nur die Auth-Umgebung. Echte SQL-Funktionen, Constraints und RLS werden ausgeführt. Der Seed liegt getrennt vom Migrationsordner und verlangt einen ausschließlich lokalen Marker.
 
@@ -69,7 +69,7 @@ Sicherungskonzept:
 
 | Bereich | Noch erforderlich |
 |---|---|
-| Supabase-Vorschau | Eigenes Testprojekt, Schlüssel, Freigabe der Migrationen |
+| Supabase-Vorschau | Eingerichtet und geprüft; Produktionsübernahme mit Backup und Freigabe steht noch aus |
 | Mail | Anbieter/SMTP, Absender, Domainprüfung, Templates, Zustell-/Recovery-Tests |
 | Wallets | Konten, Zertifikate, Assets, Ausgabe-/Update-Dienst und offizielle Gerätetests; siehe CLUB-WALLETS.md |
 | Standorte | Bestätigte Cafés, Adresse, Koordinaten, Öffnungszeiten; sechs Visionen bleiben getrennt |
