@@ -70,7 +70,7 @@ export function clubError(error: unknown) {
     CLUB_CUSTOMER:
       "Mitarbeiter- und Administrationskonten verwenden ihren eigenen Club-Bereich.",
     CLUB_FORBIDDEN:
-      "Dafür fehlen die erforderlichen Standortrechte oder die Zwei-Faktor-Bestätigung.",
+      "Dafür fehlen die erforderliche Rolle oder die Berechtigung für diesen Standort.",
     CLUB_NOT_FOUND:
       "Der Eintrag wurde nicht gefunden oder ist nicht verfügbar.",
     CLUB_VARIANT:

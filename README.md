@@ -2,6 +2,8 @@
 
 Aktuelle Club-Freischaltung, Zugänge und verbleibende Einschränkungen: [Produktionsstand](docs/CLUB-PRODUKTION.md). Die öffentliche Website und die bisherigen Kunden-/Personalzugänge bleiben erhalten.
 
+Die Anmeldung funktioniert auf Betreiberwunsch ohne Authenticator-App: Kunden und Mitarbeiter mit E-Mail/Passwort, Administration über den vorhandenen Benutzernamen/Passwort-Zugang. Aktuelle Prüfung: 33 lokale und 38 echte Supabase-Tests; Rollen- und Standortrechte werden weiterhin in der Datenbank geprüft.
+
 ## LACACCINO Club – online und lokal
 
 Der Club ist auf beiden Hauptadressen unter `/club` freigeschaltet und in der Navigation verlinkt. Die separate Supabase-Vorschau auf dem Zweig `club-test` bleibt erhalten. Testkonten und Produktivkonten sind getrennt; Details: [Club-Testprojekt](docs/CLUB-TESTPROJEKT.md).

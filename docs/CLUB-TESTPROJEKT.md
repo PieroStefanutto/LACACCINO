@@ -2,6 +2,8 @@
 
 Stand: 20.09.2026. Der Betreiber hat das neu angelegte Projekt ausdrücklich für die Club-Tests bereitgestellt.
 
+Aktualisierung: Die elfte Migration `20260920150000_club_password_access.sql` ermöglicht auf Betreiberwunsch Anmeldung ohne Authenticator-App. TOTP ist deaktiviert. Der aktualisierte Lauf umfasst 38 erfolgreiche reale Tests mit normalen Passwort-Sitzungen (AAL1), einschließlich unveränderter Kunden-, Rollen- und Standortgrenzen. Die folgenden Hinweise zum ersten MFA-Abnahmelauf sind historisch.
+
 - Supabase: `lacaccino-club-test`, Referenz `cilstsrnidvmtcugjyns`, Region `eu-west-1`.
 - Ausgangspunkt: 0 Tabellen in `public`, 0 Auth-Konten.
 - Alle zehn versionierten Migrationen wurden mit expliziter Testprojekt-Referenz angewendet. Kein Demo-Bootstrap, kein lokaler Demo-Seed übertragen.
@@ -14,7 +16,7 @@ Stand: 20.09.2026. Der Betreiber hat das neu angelegte Projekt ausdrücklich fü
 
 Die Vorschau verwendet echte Supabase-Sitzungen und serverseitig bestätigte Nutzer. Keine frei wählbaren Testrollen. Sie zeigt einen dauerhaften Hinweis auf die getrennte Testumgebung.
 
-Zwei fiktive Konten für die manuelle Abnahme wurden angelegt: Kunde und Administrator. Ihre zufälligen Passwörter liegen nur lokal in `artifacts/club-test-zugang.txt` und `artifacts/club-staging/preview-accounts.json`. Beide Pfade sind von Git und Vercel-Uploads ausgeschlossen. Das Admin-Konto benötigt zusätzlich TOTP. Es hat keine Rechte im Produktionsprojekt.
+Zwei fiktive Konten für die manuelle Abnahme wurden angelegt: Kunde und Administrator. Ihre zufälligen Passwörter liegen nur lokal in `artifacts/club-test-zugang.txt` und `artifacts/club-staging/preview-accounts.json`. Beide Pfade sind von Git und Vercel-Uploads ausgeschlossen. Auch das Admin-Konto verwendet nur E-Mail und Passwort. Es hat keine Rechte im Produktionsprojekt.
 
 Die Vorschau behält den Vercel-Zugriffsschutz. Falls Vercel zuerst eine Anmeldung verlangt, das eigene Vercel-Konto verwenden; anschließend mit dem separaten Club-Testkonto anmelden. Für automatisierte Prüfungen wird nur der vorhandene, auf die Vorschau-Adresse beschränkte Automation-Zugang verwendet. Sein Schlüssel wird weder dokumentiert noch weitergegeben.
 

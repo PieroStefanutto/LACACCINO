@@ -82,18 +82,28 @@ test("Club SQL: real migrations, RLS, membership, ledger, rewards, events and ro
         rpc("mila", "club_admin_snapshot"),
         /CLUB_FORBIDDEN/,
       );
-      await assert.rejects(
-        localQuery(
-          db,
-          u.admin,
-          "select public.club_admin_snapshot()",
-          [],
-          "aal1",
-        ),
-        /CLUB_FORBIDDEN/,
-      );
+      assert.ok((await rpc("admin", "club_admin_snapshot")).metrics);
     },
   );
+  await t.test("Password sessions preserve admin, account and location boundaries", async () => {
+    assert.equal((await rpc("admin", "club_snapshot")).role, "administrator");
+    assert.equal((await rpc("team", "club_snapshot")).role, "employee");
+    assert.equal((await rpc("leitung", "club_snapshot")).role, "manager");
+    await assert.rejects(localQuery(db, u.mila, "select public.club_admin_snapshot()", [], "aal2"), /CLUB_FORBIDDEN/);
+    await db.query("update public.portal_admins set must_change_password=true where user_id=$1", [u.admin]);
+    await assert.rejects(rpc("admin", "club_admin_snapshot"), /CLUB_FORBIDDEN/);
+    assert.equal((await rpc("admin", "club_snapshot")).initial_password, "/admin/passwort");
+    await db.query("update public.portal_admins set must_change_password=false where user_id=$1", [u.admin]);
+    await db.query("update public.staff_members set active=false where user_id=$1", [u.team]);
+    assert.equal(await rpc("team", "club_can_work", {location: loc}), false);
+    await db.query("update public.staff_members set active=true where user_id=$1", [u.team]);
+    await db.query("delete from public.club_staff_roles where user_id=$1", [u.team]);
+    const unassigned = await rpc("team", "club_snapshot");
+    assert.equal(unassigned.role, "employee");
+    assert.deepEqual(unassigned.work_locations, []);
+    assert.equal(await rpc("team", "club_can_work", {location: loc}), false);
+    await db.query("insert into public.club_staff_roles(user_id,location_id,role) values($1,$2,'employee')", [u.team,loc]);
+  });
   await t.test(
     "membership is idempotent; favourites persist and cannot cross accounts",
     async () => {

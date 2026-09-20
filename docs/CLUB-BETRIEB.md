@@ -19,7 +19,7 @@ Die lokale Datenbank führt alle Migrationen aus. `supabase/demo/bootstrap.sql` 
 
 Für die echte Vorschau werden bestehende Supabase-Funktionen verwendet: Passwortanmeldung, bestätigender E-Mail-Link, Registrierung und Recovery. Rücksprünge sind auf bekannte lokale Routen begrenzt. E-Mail-Funktionen bleiben mit `AUTH_EMAIL_ENABLED=false` gesperrt. Keine eigene Passwortverschlüsselung.
 
-Privilegierte Club-RPCs verlangen `aal2` und aktuelle Admin-/Standortrechte. TOTP-Einrichtung/Bestätigung nutzt Supabase. Der bisherige HR-/Adminbereich ist noch nicht vollständig auf MFA umgestellt und muss vor gemeinsamer Echtbetriebsfreigabe vereinheitlicht werden. [Supabase SSR](https://supabase.com/docs/guides/auth/server-side/creating-a-client), [MFA/TOTP](https://supabase.com/docs/guides/auth/auth-mfa/totp)
+Auf ausdrücklichen Betreiberwunsch verwenden alle Bereiche die normale Supabase-Passwortanmeldung ohne Authenticator-App. Club-RPCs prüfen bestätigte Konten, aktuelle Admin-/Standortrechte und die Pflicht zum Wechsel eines Startpassworts. TOTP-Einrichtung und -Bestätigung sind deaktiviert. Mitarbeiter ohne Standortzuordnung erreichen den Servicebereich, können dort aber keine Kunden- oder Punkteaktionen ausführen. [Supabase SSR](https://supabase.com/docs/guides/auth/server-side/creating-a-client), [Anmeldestufen](https://supabase.com/docs/guides/auth/auth-mfa)
 
 ## Rollen und Buchungen
 
@@ -42,7 +42,7 @@ Keine automatische Kasse, kein festgelegter Euro-Gegenwert, keine endgültige Ab
 
 - RLS auf Club-Tabellen; eigene Daten über serverseitige Identität. Keine browserseitige Ziel-User-ID.
 - Explizite RPCs; keine direkten Schreibrechte für Punkte, Rollen, Kartenkennungen und Prämien.
-- Standort-/Rollen-/MFA-Prüfung in der Datenbank. Begrenzung sensibler Vorgänge auch direkt auf RPC-Ebene; HTTP zusätzlich mit Origin-, Eingabe- und Größenprüfung.
+- Standort-/Rollen-/Kontoprüfung in der Datenbank. Begrenzung sensibler Vorgänge auch direkt auf RPC-Ebene; HTTP zusätzlich mit Origin-, Eingabe- und Größenprüfung.
 - Kundendaten/Downloads: `private, no-store`. Keine Schlüssel in clientseitigen Variablen. Kamera erst nach Bedienhandlung.
 - Noch keine privaten Uploads. Später: private Buckets, Eigentümer-RLS, MIME-/Größenprüfung und kurzlebige autorisierte Downloads.
 - Marketing freiwillig, getrennt und anfangs aus. Consent-Tabelle speichert Zeit, Version und Widerruf. Abmeldung verhindert weitere Marketinganzeigen. Noch kein Mail-Worker oder Push-Abonnement.

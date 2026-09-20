@@ -95,7 +95,7 @@ export async function localQuery<T>(
   userId: string | null,
   sql: string,
   args: unknown[] = [],
-  aal = "aal2",
+  aal = "aal1",
 ) {
   return db.transaction(async (tx) => {
     await tx.query(

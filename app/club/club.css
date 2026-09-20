@@ -827,12 +827,6 @@
   border-radius: 4px;
   margin-bottom: 24px;
 }
-.club-mfa-qr {
-  max-width: 240px;
-  background: white;
-  padding: 12px;
-  margin: 20px 0;
-}
 .club-mobile-nav {
   display: none;
 }

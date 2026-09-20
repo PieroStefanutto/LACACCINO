@@ -5,7 +5,6 @@ import { clubRpc, clubError, clubIdentity } from "@/lib/club/server";
 import { createSupabaseServer, siteOrigin } from "@/lib/supabase/server";
 import { allowRequest } from "@/lib/community/rate-limit";
 import { validEmail, validPassword } from "@/lib/community/validation";
-import type { ClubSnapshot } from "@/lib/club/types";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -33,6 +32,8 @@ export async function POST(
       : [siteOrigin()];
   if (!allowedOrigins.includes(request.headers.get("origin") || ""))
     return json({ error: "Ungültiger Ursprung." }, 403);
+  if (operation === "mfa-enroll" || operation === "mfa-verify")
+    return json({ error: "Bitte melde dich mit deinem Passwort an. Dieser Zugang wird nicht mehr verwendet." }, 404);
   if (
     mode === "demo" &&
     !/^(localhost|127\.0\.0\.1)$/.test(request.nextUrl.hostname)
@@ -190,43 +191,6 @@ export async function POST(
         if (error) throw error;
       }
       return json({ ok: true, redirect: "/club/anmelden" });
-    }
-    if (operation === "mfa-enroll" || operation === "mfa-verify") {
-      if (mode !== "supabase") throw new Error("CLUB_INPUT");
-      const data = await clubRpc<ClubSnapshot>("club_snapshot");
-      if (!data.privileged) throw new Error("CLUB_FORBIDDEN");
-      const client = await createSupabaseServer();
-      if (operation === "mfa-enroll") {
-        const { data: factors, error: factorError } =
-          await client.auth.mfa.listFactors();
-        if (factorError) throw factorError;
-        const existing = factors.totp.find((f) => f.status === "verified");
-        if (existing) return json({ ok: true, factorId: existing.id });
-        const { data: factor, error } = await client.auth.mfa.enroll({
-          factorType: "totp",
-          friendlyName: "LACACCINO Club",
-        });
-        if (error) throw error;
-        return json({ ok: true, factorId: factor.id, qr: factor.totp.qr_code });
-      }
-      if (!/^\d{6}$/.test(s("code"))) throw new Error("CLUB_INPUT");
-      const { error } = await client.auth.mfa.challengeAndVerify({
-        factorId: s("factor_id"),
-        code: s("code"),
-      });
-      if (error)
-        return json(
-          {
-            error:
-              "Der Code konnte nicht bestätigt werden. Bitte prüfe den aktuellen Code.",
-          },
-          400,
-        );
-      return json({
-        ok: true,
-        message: "Zweiter Faktor bestätigt.",
-        redirect: "/club",
-      });
     }
     let result: unknown;
     switch (operation) {

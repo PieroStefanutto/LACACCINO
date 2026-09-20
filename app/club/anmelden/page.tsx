@@ -77,8 +77,8 @@ export default async function Login({
                 </label>
               </ClubForm>
               <p className="club-small">
-                Die Testrollen simulieren eine bestätigte MFA-Sitzung. Sie
-                prüfen keine echte Anmeldung.
+                Die Testrollen simulieren eine normale Sitzung. Sie prüfen
+                keine echte Anmeldung.
               </p>
             </>
           ) : mode === "supabase" ? (

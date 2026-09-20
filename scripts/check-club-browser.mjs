@@ -178,7 +178,7 @@ const report = {
     "no browser errors",
   ],
   notTested: [
-    "real Supabase Auth/MFA/email",
+    "real Supabase Auth/email",
     "physical QR camera",
     "Apple Wallet on iPhone",
     "Google Wallet on Android",

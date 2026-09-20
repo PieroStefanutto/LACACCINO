@@ -64,7 +64,7 @@ await writeFile(
       "",
     ]),
     "Die Konten gelten nur in der Testumgebung. Keine echten Daten eingeben.",
-    "Der Adminzugang verlangt nach der Anmeldung die Einrichtung einer Authenticator-App.",
+    "Der Adminzugang funktioniert mit E-Mail und Passwort ohne Authenticator-App.",
     'Auf dem Kundenkonto unter Start einmal "Meine Mitgliedskarte erstellen" waehlen, falls die Karte noch nicht angelegt ist.',
     "Keine Registrierung und keine Passwort-E-Mails, solange SMTP fehlt.",
     "Diese Datei bleibt lokal und wird nicht auf GitHub oder Vercel hochgeladen.",

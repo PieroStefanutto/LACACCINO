@@ -5,7 +5,6 @@ import { mkdir, writeFile } from "node:fs/promises";
 import {
   testEnvironment,
   value,
-  enableTestMfa,
   TEST_PROJECT_REF,
 } from "./club-test-support.mjs";
 
@@ -102,23 +101,30 @@ try {
       { user_id: manager.id, location_id: ids.location, role: "manager" },
     ]),
   );
-  const denied = await admin.client.rpc("club_admin_snapshot");
+  const denied = await a.client.rpc("club_admin_snapshot");
   check(
-    "Privileged API requires real MFA",
+    "Customer cannot access privileged API",
     denied.error?.message.includes("CLUB_FORBIDDEN"),
   );
-  await enableTestMfa(admin.client);
-  await enableTestMfa(staff.client);
-  await enableTestMfa(manager.client);
   check(
-    "Supabase TOTP upgrades the session to aal2",
-    (await value(admin.client.auth.mfa.getAuthenticatorAssuranceLevel()))
-      .currentLevel === "aal2",
+    "Privileged tests use a real password-only aal1 session",
+    (await value(admin.client.auth.getClaims())).claims.aal === "aal1",
   );
   check(
     "Administrator can load actual management data",
     !!(await rpc(admin.client, "club_admin_snapshot")).metrics,
   );
+  check("Password-only roles resolve correctly", (await rpc(admin.client, "club_snapshot")).role === "administrator" && (await rpc(staff.client, "club_snapshot")).role === "employee" && (await rpc(manager.client, "club_snapshot")).role === "manager");
+  await value(service.from("portal_admins").update({must_change_password:true}).eq("user_id",admin.id));
+  check("Initial password change remains mandatory", !!(await admin.client.rpc("club_admin_snapshot")).error);
+  await value(service.from("portal_admins").update({must_change_password:false}).eq("user_id",admin.id));
+  await value(service.from("staff_members").update({active:false}).eq("user_id",staff.id));
+  check("Inactive staff cannot work", !(await rpc(staff.client,"club_can_work",{location:ids.location})));
+  await value(service.from("staff_members").update({active:true}).eq("user_id",staff.id));
+  await value(service.from("club_staff_roles").delete().eq("user_id",staff.id));
+  const unassigned = await rpc(staff.client,"club_snapshot");
+  check("Unassigned staff reaches service without gaining location access", unassigned.role === "employee" && unassigned.work_locations.length === 0 && !(await rpc(staff.client,"club_can_work",{location:ids.location})));
+  await value(service.from("club_staff_roles").insert({user_id:staff.id,location_id:ids.location,role:"employee"}));
   await rpc(admin.client, "club_admin_save", {
     entity: "drink",
     payload: {

@@ -15,7 +15,6 @@ import { ClubShell, ClubMark } from "@/components/club/ClubShell";
 import { ClubForm } from "@/components/club/ClubForm";
 import { StaffDesk } from "@/components/club/StaffDesk";
 import { AdminDesk } from "@/components/club/AdminDesk";
-import { MfaPanel } from "@/components/club/MfaPanel";
 import { LocationMap } from "@/components/club/LocationMap";
 import { clubData, clubRpc } from "@/lib/club/server";
 import { clubMode, commerceModules } from "@/lib/club/config";
@@ -207,22 +206,12 @@ export default async function ClubPage({
       {children}
     </ClubShell>
   );
-  if (data.privileged && !isStaff)
-    return wrapper(
-      <>
-        <Heading
-          overline="Sicherheit"
-          title="Dein geschützter Arbeitsbereich."
-        />
-        <MfaPanel />
-      </>,
-    );
   if (section === "admin") {
     if (data.role !== "administrator")
       return wrapper(
         <Empty
           title="Dieser Bereich ist geschützt."
-          text="Die Administration ist nur mit entsprechender Rolle und bestätigtem zweiten Faktor zugänglich."
+          text="Die Administration ist nur mit einem berechtigten Administratorkonto zugänglich."
         />,
       );
     const admin = await clubRpc<AdminSnapshot>("club_admin_snapshot");

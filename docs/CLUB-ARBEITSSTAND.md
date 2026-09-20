@@ -1,5 +1,7 @@
 # LACACCINO Club – Arbeitsstand
 
+**Aktuell: Anmeldung ohne Authenticator-App.** Der Betreiber hat die zweite Codeabfrage ausdrücklich abgewählt. Eine elfte Migration ermöglicht normale Passwort-Sitzungen für berechtigte Admins und Mitarbeiter. TOTP ist in beiden Supabase-Projekten deaktiviert; Rollen-, Standort- und Kundentrennung bleiben erhalten. 33 lokale und 38 reale Supabase-Tests bestanden. Die ursprünglichen MFA-Angaben weiter unten beschreiben frühere Prüfstände.
+
 **Aktuelle Etappe: Produktionsfreischaltung auf ausdrücklichen Auftrag.** Die bestehende Produktionsdatenbank ist gesichert und migriert; die vorhandenen Daten wurden unverändert geprüft. Veröffentlichung und Online-Abnahme: [CLUB-PRODUKTION.md](CLUB-PRODUKTION.md). Die folgenden Abschnitte dokumentieren die vorherigen Etappen und ihre damaligen Grenzen.
 
 Stand: 20. September 2026. Aktueller Vorschauzweig `club-test`; lokale Grundlage `feature/lacaccino-club-local`.
@@ -77,7 +79,7 @@ Ein lokal bestandener SQL-Test ersetzt weder Supabase-Auth-Integrationstests noc
 ## Fortsetzung
 
 1. Erledigt: separates Supabase-Testprojekt bereitgestellt, alle Migrationen dort angewendet. Kein Demo-Seed übertragen.
-2. Auth/Recovery/MFA mit echten Testkonten und Mailanbieter Ende zu Ende prüfen, Rollen des bestehenden HR-/Adminbereichs vereinheitlichen.
+2. Echte Passwort-Anmeldung und Rollenrechte sind geprüft. Mailanbieter einrichten und Zustellung/Recovery Ende zu Ende prüfen; Authenticator-MFA ist auf Betreiberwunsch deaktiviert.
 3. Erledigt: konkurrierende Buchungen, Prämieneinlösungen und Eventanmeldungen gegen echtes PostgreSQL geprüft. Umfangreichere Lasttests, Indexierung und seitenweise Adminlisten für größere Mengen bleiben offen.
 4. Regeln, Standorte, Sortiment und Betreiber-/Rechtstexte freigeben; Löschabschluss und Aufbewahrung umsetzen.
 5. Wallet-Ausgabe/Registrierungsdienste und Worker fertigstellen; offizielle Tests aus `CLUB-WALLETS.md` durchführen.

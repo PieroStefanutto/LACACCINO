@@ -2,6 +2,8 @@
 
 Stand: 20.09.2026. Der Betreiber hat die Freischaltung auf der Hauptwebsite ausdrücklich beauftragt.
 
+Aktualisierung auf Betreiberwunsch: Alle LACACCINO-Zugänge funktionieren ohne Authenticator-App. Migration `20260920150000_club_password_access.sql` entfernt die AAL2-Pflicht und behält bestätigte Konten, Passwortwechselpflicht, Rollen- und Standortrechte bei. Die Authenticator-Oberfläche und ihre aktiven API-Endpunkte wurden entfernt; TOTP-Einrichtung und -Bestätigung sind in Test- und Produktionsprojekt deaktiviert. Es wurden keine bestehenden Passwörter oder Konten geändert. Die Anmeldung der Supabase-/Vercel-Betreiberkonten ist davon unabhängig.
+
 ## Datenbank und Sicherung
 
 - Bestehende Produktionsdatenbank `midxwtzhytzvbmidpvsl`, keine Umschaltung auf das Testprojekt.
@@ -19,7 +21,7 @@ Beide Vercel-Projekte erhalten ausschließlich in Production: `APP_ENV=productio
 - Hauptadresse: `https://lacaccino.vercel.app/club`
 - Zweite bestehende Adresse: `https://lacaccino-mfw9.vercel.app/club`
 - Kundenkarte: `/club/karte`; ein bestätigtes Kundenkonto kann seine Mitgliedschaft selbst anlegen.
-- Administration: bisherige Anmeldung `/admin/anmelden`, anschließend „Club-Administration“. Der Club verlangt zusätzlich die Authenticator-Einrichtung bzw. einen bestätigten zweiten Faktor.
+- Administration: bisherige Anmeldung `/admin/anmelden` mit Benutzername und Passwort, anschließend „Club-Administration“. Es wird kein Authenticator-Code verlangt.
 - Mitarbeiter: bisheriger Personalzugang, anschließend „Club-Service“. Standortberechtigungen werden in der Club-Administration vergeben. Zeiterfassung und Abwesenheiten bleiben im bisherigen Personalbereich.
 - Hauptnavigation und Footer verlinken den Club. Das bisherige Kundenportal verlinkt direkt zur Karte und bleibt für Warteliste, Rabattcodes und Bestellhistorie erhalten.
 
@@ -38,7 +40,7 @@ Build einschließlich Typprüfung, ESLint und 32 lokale Tests bestanden. Die Pro
 
 Beide Vercel-Produktionsdeployments des Anwendungsstands `1195628` sind READY und über die Hauptadressen öffentlich erreichbar, ohne Vercel-Vorschau-Anmeldung. Geprüft: echte Passwortanmeldung, Kartenerstellung, dieselbe Karte auf beiden Adressen, mobiler Einstieg von der Homepage, Verbindung zum bisherigen Konto, Abmeldung, Desktop 1440 × 1000 und Smartphone 390 × 844. Kein horizontaler Überlauf; der QR-Code liegt vollständig über der unteren Navigation. Keine JavaScript-Fehler oder Runtime-Error-Einträge in beiden geprüften Deployments.
 
-Eine kurzlebige Admin-Prüfidentität bestätigte auch in Production die MFA-Abweisung ohne zweiten Faktor und den erfolgreichen Verwaltungszugriff nach echter TOTP-Bestätigung. Die beiden ausdrücklich fiktiven Prüfnutzer einschließlich Kundenkarte wurden wieder entfernt. Abschlussbestand: die ursprünglichen zwei Konten, ein Administrator, ein Mitarbeiter, null Kundenmitgliedschaften und keine künstlichen Standort-/Prämienangebote. Für das eigene Kundenkonto wurde eine separate Betreiber-E-Mail-Adresse angefragt.
+Die ursprüngliche Freigabe enthielt einen erfolgreichen MFA-Test. Diese Anmeldeart wurde anschließend auf ausdrücklichen Betreiberwunsch ersetzt. Für die aktuelle Passwortanmeldung: 33 lokale Tests, 38 echte Supabase-Integrationstests, Build/Typprüfung und ESLint erfolgreich. Insbesondere Kundenabweisung, Rollenauflösung, initialer Passwortwechsel, inaktive Mitarbeiter und fehlende Standortzuordnungen wurden geprüft. Die Auth-Umstellung wird zusätzlich online mit kurzlebigen Prüfnutzern abgenommen; Nachweis: `artifacts/club-password-access`. Für das eigene Kundenkonto bleibt eine separate Betreiber-E-Mail-Adresse angefragt.
 
 Nachweise und Screenshots: `artifacts/club-production/card-desktop.png`, `card-mobile.png`, `home-mobile-menu.png`, `runtime-errors.json` und `release-results.json`. Die Screenshots zeigen die inzwischen gelöschte Prüfkarte.
 
