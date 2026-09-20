@@ -2,11 +2,11 @@
 
 Aktuelle Club-Freischaltung, Zugänge und verbleibende Einschränkungen: [Produktionsstand](docs/CLUB-PRODUKTION.md). Die öffentliche Website und die bisherigen Kunden-/Personalzugänge bleiben erhalten.
 
-## Neuer LACACCINO Club – lokale Ausbaustufe
+## LACACCINO Club – online und lokal
 
-Neu: Eine separate Supabase-Vorschau wird auf dem Zweig `club-test` eingerichtet. Datenbank, echte Anmeldung und MFA sind unabhängig vom Echtbetrieb geprüft; Details und Zugang: [Club-Testprojekt](docs/CLUB-TESTPROJEKT.md).
+Der Club ist auf beiden Hauptadressen unter `/club` freigeschaltet und in der Navigation verlinkt. Die separate Supabase-Vorschau auf dem Zweig `club-test` bleibt erhalten. Testkonten und Produktivkonten sind getrennt; Details: [Club-Testprojekt](docs/CLUB-TESTPROJEKT.md).
 
-Der Club wurde auf dem Zweig `feature/lacaccino-club-local` entwickelt. Am 20.09.2026 hat der Betreiber die Veröffentlichung des geprüften Codes freigegeben. **Der neue Club bleibt im Echtbetrieb deaktiviert; keine produktive Migration.** Die bestehende Markenwebsite und die bisherigen Portale bleiben erhalten. Der folgende Testzugang funktioniert ausschließlich lokal.
+Am 20.09.2026 hat der Betreiber nach der Testabnahme die Produktionsfreischaltung beauftragt. Die bestehende Datenbank wurde verschlüsselt gesichert, additiv migriert und auf Erhalt der bisherigen Daten geprüft. Die Markenwebsite und die bisherigen Portale bleiben erhalten. Die folgenden Testrollen funktionieren ausschließlich lokal; die Online-Anmeldung verwendet echte Supabase-Konten.
 
 Zum sicheren Ausprobieren (Node.js 24):
 
@@ -35,7 +35,7 @@ Browserprüfung: `scripts/check-club-browser.mjs` mit `AGENT_BROWSER_BIN` auf di
 - [Apple/Google Wallet: Einrichtung und noch offene Schritte](docs/CLUB-WALLETS.md)
 - [.env.example mit Platzhaltern](.env.example)
 
-Echte Supabase-/E-Mail-/MFA-Tests benötigen ein getrenntes Testprojekt und Mail-Einrichtung. Wallet-Signierung und Datenmodell sind vorbereitet; Ausgabe-/Update-Dienste und offizielle Gerätetests fehlen. Verkauf bleibt deaktiviert. Diese Ausbaustufe ist keine Aussage über Produktionsreife oder rechtliche Vollständigkeit.
+34 echte Supabase-/MFA-/Parallelitätstests wurden im separaten Testprojekt bestanden. Anmeldung, Karte und MFA wurden auch in Production mit kurzlebigen Prüfnutzern bestätigt; diese wurden anschließend entfernt. E-Mail-Versand und neue Registrierungen bleiben bis zur Mail-Einrichtung gesperrt. Wallet-Ausgabe, offizielle Gerätetests und Verkauf bleiben offen. Die Veröffentlichung ist keine Aussage über vollständige Produktionsreife oder rechtliche Vollständigkeit.
 
 **Achtung bei den älteren Integrationsskripten:** Sie können das Projekt aus `.env.local` verändern. Für diese Etappe nur die neuen Club-Prüfskripte beziehungsweise rein lokale Unit-Tests verwenden.
 
@@ -98,7 +98,7 @@ Für den manuellen Abnahmelauf der Markenwebsite: Desktop und Smartphone, Intro 
 
 ## Rechtliche Informationen
 
-Impressum, Datenschutz, AGB/Nutzungshinweise und Cookie-Information sind über den globalen Footer erreichbar. Die Anbieterangaben stammen aus dem Dächle-Impressum. Fehlende Angaben und betriebliche Prüfpunkte sind in [docs/legal-review.md](docs/legal-review.md) dokumentiert. Die damalige Website-Veröffentlichung ist bereits erfolgt; für den neuen Club gilt ausdrücklich keine Veröffentlichungsfreigabe. Offene Angaben bleiben zu ergänzen. Das ursprüngliche dunkle Design bleibt erhalten.
+Impressum, Datenschutz, AGB/Nutzungshinweise und Cookie-Information sind über den globalen Footer erreichbar. Die Anbieterangaben stammen aus dem Dächle-Impressum. Fehlende Angaben und betriebliche Prüfpunkte sind in [docs/legal-review.md](docs/legal-review.md) dokumentiert. Website und Club wurden auf ausdrücklichen Auftrag veröffentlicht. Offene Angaben bleiben zu ergänzen. Das ursprüngliche dunkle Design bleibt erhalten.
 
 ## Kundenportal und Administration
 

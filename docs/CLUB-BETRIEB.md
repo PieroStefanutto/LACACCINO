@@ -9,11 +9,11 @@ Aktualisierung vom 20.09.2026: Der Betreiber hat nach der Testabnahme die Produk
 - PGlite läuft auf dem Server. Daten: `artifacts/club-demo/database-<Schemahash>`. Schema-/Seedänderungen bekommen einen neuen Ordner; frühere fiktive Daten bleiben erhalten.
 - Die sichtbare Testrollenauswahl ist **keine Auth-Lösung**. Sie verwendet ein HttpOnly-/SameSite-Cookie und ist in Production, Vercel oder bei nicht lokalem Host gesperrt.
 - Vorschau braucht ein **separates** Supabase-Projekt: `APP_ENV=preview`, `CLUB_MODE=supabase`, passende `CLUB_SUPABASE_PROJECT_REF`, Site-URL und eigene Schlüssel. Das bisherige produktive Projekt wird zusätzlich abgewiesen.
-- Produktionsfreigabe des Clubs ist in dieser Etappe nicht implementiert. Gesetzte Variablen allein aktivieren sie nicht.
+- Produktionsfreigabe benötigt `APP_ENV=production`, `CLUB_PRODUCTION_ENABLED=true`, `CLUB_MODE=supabase` und die exakte produktive Projektadresse/-Referenz. Vorschau- und Demo-Konfigurationen bleiben dort ausgeschlossen.
 
 ## Datenbank und Anmeldung
 
-Die fünf bestehenden Migrationen bleiben unverändert. Vier zusätzliche Migrationen erweitern Mitgliedschaften, Sortiment, Treueprogramm, Inhalte, Rollen und Wallet-Vorbereitung. Eine weitere Migration begrenzt die API-Rechte der automatischen RLS-Triggerfunktion. **Alle zehn Migrationen wurden ausschließlich auf das autorisierte Supabase-Testprojekt angewendet. Die Produktionsdatenbank wurde nicht migriert.** Einrichtung, Online-Zugang und Abnahme: [CLUB-TESTPROJEKT.md](CLUB-TESTPROJEKT.md).
+Die fünf bestehenden Migrationen bleiben unverändert. Vier zusätzliche Migrationen erweitern Mitgliedschaften, Sortiment, Treueprogramm, Inhalte, Rollen und Wallet-Vorbereitung. Eine weitere Migration begrenzt die API-Rechte der automatischen RLS-Triggerfunktion. Alle zehn Migrationen wurden zuerst im autorisierten Testprojekt geprüft und anschließend auf ausdrücklichen Auftrag in Production angewendet. Einrichtung und Abnahme: [CLUB-TESTPROJEKT.md](CLUB-TESTPROJEKT.md), [CLUB-PRODUKTION.md](CLUB-PRODUKTION.md).
 
 Die lokale Datenbank führt alle Migrationen aus. `supabase/demo/bootstrap.sql` simuliert nur die Auth-Umgebung. Echte SQL-Funktionen, Constraints und RLS werden ausgeführt. Der Seed liegt getrennt vom Migrationsordner und verlangt einen ausschließlich lokalen Marker.
 
@@ -71,7 +71,7 @@ Sicherungskonzept:
 
 | Bereich | Noch erforderlich |
 |---|---|
-| Supabase-Vorschau | Eingerichtet und geprüft; Produktionsübernahme mit Backup und Freigabe steht noch aus |
+| Supabase | Vorschau und Production eingerichtet und geprüft; vollständiger Restore-Test und Sicherungsbetrieb bleiben offen |
 | Mail | Anbieter/SMTP, Absender, Domainprüfung, Templates, Zustell-/Recovery-Tests |
 | Wallets | Konten, Zertifikate, Assets, Ausgabe-/Update-Dienst und offizielle Gerätetests; siehe CLUB-WALLETS.md |
 | Standorte | Bestätigte Cafés, Adresse, Koordinaten, Öffnungszeiten; sechs Visionen bleiben getrennt |
