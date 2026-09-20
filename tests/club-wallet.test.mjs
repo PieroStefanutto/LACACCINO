@@ -76,6 +76,15 @@ test("Demo cannot activate in production; linked real Supabase project is exclud
   assert.equal(clubMode(env), "demo");
   assert.equal(clubMode({ ...env, NODE_ENV: "production" }), "off");
   assert.equal(clubMode({ ...env, VERCEL: "1" }), "off");
+  const preview = {
+    CLUB_MODE: "supabase",
+    APP_ENV: "preview",
+    SUPABASE_URL: "https://fictional-test.supabase.co",
+    CLUB_SUPABASE_PROJECT_REF: "fictional-test",
+  };
+  assert.equal(clubMode(preview), "supabase");
+  assert.equal(clubMode({ ...preview, VERCEL_ENV: "production" }), "off");
+  assert.equal(clubMode({ ...preview, APP_ENV: "production" }), "off");
   assert.equal(
     clubMode({
       CLUB_MODE: "supabase",

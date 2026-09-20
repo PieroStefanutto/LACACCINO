@@ -2,7 +2,7 @@
 
 ## Neuer LACACCINO Club – lokale Ausbaustufe
 
-Der Club wird auf dem lokalen Zweig `feature/lacaccino-club-local` entwickelt. **Nicht gepusht, nicht veröffentlicht, keine produktive Migration.** Die bestehende Markenwebsite bleibt erhalten.
+Der Club wurde auf dem Zweig `feature/lacaccino-club-local` entwickelt. Am 20.09.2026 hat der Betreiber die Veröffentlichung des geprüften Codes freigegeben. **Der neue Club bleibt im Echtbetrieb deaktiviert; keine produktive Migration.** Die bestehende Markenwebsite und die bisherigen Portale bleiben erhalten. Der folgende Testzugang funktioniert ausschließlich lokal.
 
 Zum sicheren Ausprobieren (Node.js 24):
 

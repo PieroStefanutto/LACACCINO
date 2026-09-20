@@ -1,6 +1,8 @@
 export function clubMode(
   env: Record<string, string | undefined> = process.env,
 ): "off" | "demo" | "supabase" {
+  // Preview variables must never enable the unfinished Club on a production deployment.
+  if (env.VERCEL_ENV === "production" || env.APP_ENV === "production") return "off";
   if (
     env.CLUB_MODE === "demo" &&
     env.APP_ENV === "local" &&

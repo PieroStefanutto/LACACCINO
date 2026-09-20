@@ -4,7 +4,7 @@ Stand: 20. September 2026. Lokaler Entwicklungszweig `feature/lacaccino-club-loc
 
 ## Auftrag und Grenzen
 
-Die öffentliche Markenwebsite und das bestehende Kunden-/Mitarbeiterportal bleiben erhalten. Keine Veröffentlichung, kein Push, keine produktive Migration. Der Betreiber hat bestätigt: Es gibt noch kein separates Supabase-Testprojekt; zunächst ausschließlich lokal arbeiten.
+Die öffentliche Markenwebsite und das bestehende Kunden-/Mitarbeiterportal bleiben erhalten. Zunächst waren Veröffentlichung und Push ausgeschlossen. Nach der lokalen Abnahme hat der Betreiber am 20.09.2026 die Veröffentlichung des geprüften Codes beauftragt. Diese Freigabe umfasst GitHub und beide bestehenden Vercel-Projekte. Der neue Club bleibt öffentlich deaktiviert; keine produktive Migration. Es gibt weiterhin kein separates Supabase-Testprojekt; Club-Tests laufen ausschließlich lokal.
 
 ## Gesicherter Ausgangspunkt
 
@@ -14,7 +14,7 @@ Die öffentliche Markenwebsite und das bestehende Kunden-/Mitarbeiterportal blei
 - Git-Identität ist vorhanden; keine Identität erfunden.
 - Next.js 16.3.5, React 19.3.0, TypeScript; Supabase JS 2.116.0 und SSR. Bestehende Pakete und Framework bleiben erhalten.
 - Bereits vorhanden: bestätigte Supabase-Konten, Profile, Newsletter-Einwilligungsprotokoll, Kontakt/Warteliste, Admin, Punktejournal, vorbereitete Shop-Rabatte, Bestellhistorie und HR-Zeiterfassung/Abwesenheiten.
-- Laut bestehender Projektkonfiguration und README ist Vercel mit GitHub verbunden; `main` bedient die Produktionsprojekte. Pushes können Deployments auslösen. Der erneute schreibgeschützte Vercel-API-Abruf beider Projekte lieferte `INVALID_ARGUMENT`; aktuelle Plattform-Einstellungen wurden daher nicht unabhängig bestätigt. Es wurde keinerlei Push ausgeführt.
+- Über die angemeldete Vercel-CLI bestätigt: Beide Projekte (`lacaccino`, `lacaccino-mfw9`) sind mit `PieroStefanutto/LACACCINO` und Produktionszweig `main` verbunden. Ein Push löst ihre Veröffentlichung aus. Der App-Connector war für diese Teamprojekte nicht verwendbar; die CLI-Verbindung funktioniert.
 - `.env.local` gehört zum bestehenden Echtbetrieb. Bestehende HTTP-/Supabase-Prüfskripte dürfen nicht ungeprüft gegen diese Datenbank ausgeführt werden.
 - Kein Docker/psql verfügbar. Neue SQL-Prüfungen laufen in lokalem PostgreSQL-WASM (PGlite), nicht in der produktiven Datenbank. Auth wird dabei ausschließlich für fiktive Testpersonen simuliert.
 
@@ -68,7 +68,7 @@ Ein lokal bestandener SQL-Test ersetzt weder Supabase-Auth-Integrationstests noc
 - Browser: **1440 × 1000**, **390 × 844**, **320 × 740**. Favorit speichern/erneut laden, Profil, zweites Konto, Mitarbeitersuche, Admin, Navigation, vollständiger QR, Tastatur-Sprunglink, kein Überlauf und keine Browserfehler. `artifacts/club/browser-results.json`.
 - Wallet-Signierung: Google-RSA-Signatur und simulierte API-Wiederholung; Apple-Paket mit kurzlebiger fiktiver Test-CA erzeugt. Keine Aussage zur Apple-/Google-Abnahme.
 - Abhängigkeitsaudit: ohne Befund nach Joi-Patchoverride.
-- TODO-Prüfsumme weiterhin identisch; nichts veröffentlicht.
+- TODO-Prüfsumme weiterhin identisch; die ursprüngliche lokale Abnahme erfolgte ohne Veröffentlichung. Anschließend wurde die Code-Veröffentlichung ausdrücklich beauftragt; Nachweise der Live-Prüfung liegen unter `artifacts/club-release`.
 
 ## Fortsetzung
 
